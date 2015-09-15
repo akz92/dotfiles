@@ -1,3 +1,7 @@
+execute pathogen#infect()
+set nocompatible
+filetype plugin indent on
+set t_Co=256
 set number
 set expandtab
 set shiftwidth=2
@@ -8,7 +12,7 @@ syntax on
 "let g:indent_guides_auto_colors=0
 "hi IndentGuidesEven ctermbg=238
 "hi IndentGuidesOdd ctermbg=236
-"set listchars=tab:\|\ 
+"set listchars=tab:\|\
 "set list
 
 set nocompatible              " be iMproved, required
@@ -41,3 +45,29 @@ filetype plugin indent on    " required
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+=======
+syntax enable
+colorscheme desert
+filetype indent on
+let g:indent_guides_auto_colors=0
+hi IndentGuidesEven ctermbg=238
+hi IndentGuidesOdd ctermbg=236
+"set listchars=tab:\|\
+"set list
+set nohlsearch
+set incsearch
+set autoindent
+match ErrorMsg '\s\+$'
+nnoremap <Leader>rtw :%s/\s\+$//e<CR>
+
+" Removes trailing spaces
+function! TrimWhiteSpace()
+    %s/\s\+$//e
+endfunction
+
+nnoremap <silent> <Leader>rts :call TrimWhiteSpace()<CR>
+
+autocmd FileWritePre    * :call TrimWhiteSpace()
+autocmd FileAppendPre   * :call TrimWhiteSpace()
+autocmd FilterWritePre  * :call TrimWhiteSpace()
+autocmd BufWritePre     * :call TrimWhiteSpace()
