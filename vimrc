@@ -7,12 +7,14 @@ set expandtab
 set shiftwidth=2
 set tabstop=2
 set enc=utf-8
+set cc=120
 " let g:solarized_termcolors=256
 syntax on
 syntax enable
 set background=dark
-colorscheme gruvbox
-" colorscheme solarized
+" let g:solarized_termcolors=256
+" colorscheme gruvbox
+colorscheme solarized
 set laststatus=2
 let g:netrw_liststyle=3
 
@@ -70,6 +72,24 @@ Plugin 'tpope/vim-bundler'
 
 Plugin 'morhetz/gruvbox'
 
+Plugin 'mhinz/vim-startify'
+
+Plugin 'TaskList.vim'
+
+Plugin 'tpope/vim-commentary'
+
+Plugin 'kchmck/vim-coffee-script'
+
+Plugin 'cakebaker/scss-syntax.vim'
+
+Plugin 'ervandew/supertab'
+
+Plugin 'pangloss/vim-javascript'
+
+Plugin 'tpope/vim-abolish.git'
+
+" Plugin 'flazz/vim-colorschemes'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -113,3 +133,16 @@ function! UnMinify()
     %s/[^\s]\zs[=&|]\+\ze[^\s]/ \0 /g
     normal ggVG=
 endfunction
+
+function s:MkNonExDir(file, buf)
+    if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+        let dir=fnamemodify(a:file, ':h')
+        if !isdirectory(dir)
+            call mkdir(dir, 'p')
+        endif
+    endif
+endfunction
+augroup BWCCreateDir
+    autocmd!
+    autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
+augroup END
