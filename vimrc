@@ -1,27 +1,62 @@
 execute pathogen#infect()
-set nocompatible
 filetype plugin indent on
-set t_Co=256
-set number
-set expandtab
-set shiftwidth=2
-set tabstop=2
 set enc=utf-8
-set cc=120
-" let g:solarized_termcolors=256
-syntax on
-syntax enable
-set background=dark
-" let g:solarized_termcolors=256
-" colorscheme gruvbox
-colorscheme solarized
-set laststatus=2
+set laststatus=2 " Always display the status line
+set autowrite " Automatically :write before running commands
 let g:netrw_liststyle=3
 
-set nocompatible              " be iMproved, required
-set mouse=a
+" set mouse=a
+" set nocompatible
 filetype off                  " required
 let g:indentLine_color_term = 239
+
+" Leader
+let mapleader = " "
+
+" Colors
+set t_Co=256
+syntax on
+set background=dark
+colorscheme solarized
+
+" Softtabs, 2 spaces
+set tabstop=2
+set shiftwidth=2
+set shiftround
+set expandtab
+
+"Move tabs more naturally
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Numbers
+set number
+set numberwidth=5
+
+" Open new split panes to right and bottom
+set splitbelow
+set splitright
+
+" Make it obvious where 80 characters is
+" set textwidth=80
+" set colorcolumn=+1
+set colorcolumn=80
+
+" No .swp files
+set nobackup
+set nowritebackup
+set noswapfile
+
+" Get off my lawn
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
+" Treat <li> and <p> tags like the block tags they are
+let g:html_indent_tags = 'li\|p'
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -157,3 +192,7 @@ inoremap <C-j> <Esc>:m .+1<CR>==gi
 inoremap <C-k> <Esc>:m .-2<CR>==gi
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
+
+" Abbreviations
+iabbr jslog console.log('foo');
+iabbr pry binding.pry
