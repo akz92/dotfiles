@@ -8,16 +8,17 @@ let g:netrw_liststyle=3
 " set mouse=a
 " set nocompatible
 filetype off                  " required
-let g:indentLine_color_term = 239
+" let g:indentLine_color_term = 239
 
 " Leader
 let mapleader = " "
 
 " Colors
-set t_Co=256
+" set t_Co=256
 syntax on
 set background=dark
-colorscheme solarized
+" colorscheme solarized
+colorscheme tomorrow-night
 
 " Softtabs, 2 spaces
 set tabstop=2
@@ -34,6 +35,9 @@ nnoremap <C-H> <C-W><C-H>
 " Numbers
 set number
 set numberwidth=5
+
+" Cursor highlight
+set cursorline
 
 " Open new split panes to right and bottom
 set splitbelow
@@ -71,7 +75,7 @@ Plugin 'tpope/vim-rails'
 
 Plugin 'slim-template/vim-slim'
 
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 Plugin 'tpope/vim-endwise'
 
@@ -124,6 +128,22 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'tpope/vim-abolish.git'
 
 Plugin 'tpope/vim-speeddating'
+
+" Plugin 'valloric/youcompleteme'
+
+Plugin 'danro/rename.vim'
+
+Plugin 'tpope/vim-eunuch'
+
+Plugin 'scrooloose/nerdtree'
+
+Plugin 'easymotion/vim-easymotion'
+
+Plugin 'kien/rainbow_parentheses.vim'
+
+Plugin 'chriskempson/vim-tomorrow-theme'
+
+Plugin 'yegappan/grep'
 
 " Plugin 'flazz/vim-colorschemes'
 
@@ -186,13 +206,49 @@ augroup BWCCreateDir
 augroup END
 
 " Move lines using Ctrl+j and Ctrl+k
-nnoremap <C-j> :m .+1<CR>==
-nnoremap <C-k> :m .-2<CR>==
-inoremap <C-j> <Esc>:m .+1<CR>==gi
-inoremap <C-k> <Esc>:m .-2<CR>==gi
-vnoremap <C-j> :m '>+1<CR>gv=gv
-vnoremap <C-k> :m '<-2<CR>gv=gv
+" nnoremap <C-j> :m .+1<CR>==
+" nnoremap <C-k> :m .-2<CR>==
+" inoremap <C-j> <Esc>:m .+1<CR>==gi
+" inoremap <C-k> <Esc>:m .-2<CR>==gi
+" vnoremap <C-j> :m '>+1<CR>gv=gv
+" vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " Abbreviations
 iabbr jslog console.log('foo');
 iabbr pry binding.pry
+
+" Auto load better parentheses
+" au VimEnter * RainbowParenthesesToggle
+" au Syntax * RainbowParenthesesLoadRound
+" au Syntax * RainbowParenthesesLoadSquare
+" au Syntax * RainbowParenthesesLoadBraces
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" Disable CtrP cache
+let g:ctrlp_use_caching = 0
+
+" Automatically toggle paste mode
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
