@@ -1,30 +1,133 @@
-execute pathogen#infect()
-filetype plugin indent on
+" Use Vim settings, rather then Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+
+" ================ General Config ====================
+
+set number
+set numberwidth=5
 set enc=utf-8
-set laststatus=2 " Always display the status line
-set autowrite " Automatically :write before running commands
-let g:netrw_liststyle=3
+set laststatus=2                " Always display the status line
+set autowrite                   " Automatically :write before running commands
+set visualbell                  " No sounds
+set showcmd                     " Show incomplete cmds down the bottom
+set autoread                    " Reload files changed outside vim
+set cursorline
+set colorcolumn=80
 
-" set mouse=a
-" set nocompatible
-filetype off                  " required
-" let g:indentLine_color_term = 239
+" This makes vim act like all other editors, buffers can
+" exist in the background without being in a window.
+" http://items.sjbach.com/319/configuring-vim-right
+set hidden
 
-" Leader
-let mapleader = " "
+syntax on "turn on syntax highlighting
 
-" Colors
-" set t_Co=256
-syntax on
+" The mapleader has to be set before vundle starts loading all
+" the plugins.
+let mapleader=" "
+
+" =============== Vundle Initialization ===============
+
+" This loads all the plugins specified in ~/.vim/vundles.vim
+" Use Vundle plugin to manage all other plugins
+if filereadable(expand("~/.vim/vundles.vim"))
+  source ~/.vim/vundles.vim
+endif
+
+" =============== Theme ===============
+
 set background=dark
-" colorscheme solarized
 colorscheme tomorrow-night
 
-" Softtabs, 2 spaces
-set tabstop=2
+" ================ Turn Off Swap Files ==============
+
+set noswapfile
+set nobackup
+set nowb
+
+" ================ Persistent Undo ==================
+
+" Keep undo history across sessions, by storing in file.
+" Only works all the time.
+if has('persistent_undo') && !isdirectory(expand('~').'/.vim/backups')
+  silent !mkdir ~/.vim/backups > /dev/null 2>&1
+  set undodir=~/.vim/backups
+  set undofile
+endif
+
+" ================ Indentation ======================
+
+set autoindent
+set smartindent
+set smarttab
 set shiftwidth=2
-set shiftround
+set softtabstop=2
+set tabstop=2
 set expandtab
+set shiftround
+
+" Auto indent pasted text
+nnoremap p p=`]<C-o>
+nnoremap P P=`]<C-o>
+
+filetype plugin indent on
+
+" Display tabs and trailing spaces visually
+set list listchars=tab:\ \ ,trail:·
+
+" Automatically remove trailling whitespaces
+autocmd BufWritePre * :%s/\s\+$//e
+
+set nowrap       "Don't wrap lines
+set linebreak    "Wrap lines at convenient points
+
+" Automatically toggle paste mode
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
+" ================ Folds ============================
+
+set foldmethod=indent   "fold based on indent
+set foldnestmax=3       "deepest fold is 3 levels
+set nofoldenable        "dont fold by default
+
+" ================ Scrolling ========================
+
+set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set sidescrolloff=15
+set sidescroll=1
+
+" ================ Search ===========================
+
+set incsearch       " Find the next match as we type the search
+set hlsearch        " Highlight searches by default
+set ignorecase      " Ignore case when searching...
+set smartcase       " ...unless we type a capital
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" ================ Splits ======================
 
 "Move tabs more naturally
 nnoremap <C-J> <C-W><C-J>
@@ -32,164 +135,19 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" Numbers
-set number
-set numberwidth=5
-
-" Cursor highlight
-set cursorline
-
 " Open new split panes to right and bottom
 set splitbelow
 set splitright
 
-" Make it obvious where 80 characters is
-" set textwidth=80
-" set colorcolumn=+1
-set colorcolumn=80
+" ================ Abbreviations ======================
 
-" No .swp files
-set nobackup
-set nowritebackup
-set noswapfile
+iabbr pry binding.pry
 
-" Get off my lawn
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
+" ================ Others ======================
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'tpope/vim-rails'
-
-Plugin 'slim-template/vim-slim'
-
-Plugin 'ctrlpvim/ctrlp.vim'
-
-Plugin 'tpope/vim-endwise'
-
-Plugin 'tpope/vim-fugitive'
-
-Plugin 'bling/vim-airline'
-
-Plugin 'altercation/vim-colors-solarized'
-
-Plugin 'ap/vim-css-color'
-
-Plugin 'gregsexton/MatchTag'
-
-Plugin 'airblade/vim-gitgutter'
-
-Plugin 'tpope/vim-surround'
-
-Plugin 'scrooloose/syntastic'
-
-Plugin 'elzr/vim-json'
-
-Plugin 'tpope/vim-sensible'
-
-Plugin 'hail2u/vim-css3-syntax'
-
-Plugin 'tpope/vim-haml'
-
-Plugin 'Raimondi/delimitMate'
-
-Plugin 'Shougo/neocomplete.vim'
-
-Plugin 'tpope/vim-bundler'
-
-Plugin 'morhetz/gruvbox'
-
-Plugin 'mhinz/vim-startify'
-
-Plugin 'TaskList.vim'
-
-Plugin 'tpope/vim-commentary'
-
-Plugin 'kchmck/vim-coffee-script'
-
-Plugin 'cakebaker/scss-syntax.vim'
-
-Plugin 'ervandew/supertab'
-
-Plugin 'pangloss/vim-javascript'
-
-Plugin 'tpope/vim-abolish.git'
-
-Plugin 'tpope/vim-speeddating'
-
-" Plugin 'valloric/youcompleteme'
-
-Plugin 'danro/rename.vim'
-
-Plugin 'tpope/vim-eunuch'
-
-Plugin 'scrooloose/nerdtree'
-
-Plugin 'easymotion/vim-easymotion'
-
-Plugin 'kien/rainbow_parentheses.vim'
-
-Plugin 'chriskempson/vim-tomorrow-theme'
-
-Plugin 'yegappan/grep'
-
-" Plugin 'flazz/vim-colorschemes'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-filetype indent on
-let g:indent_guides_auto_colors=0
-hi IndentGuidesEven ctermbg=238
-hi IndentGuidesOdd ctermbg=236
-"set listchars=tab:\|\
-"set list
-set nohlsearch
-set incsearch
-set autoindent
-match ErrorMsg '\s\+$'
-nnoremap <Leader>rtw :%s/\s\+$//e<CR>
-
-" Removes trailing spaces
-function! TrimWhiteSpace()
-    %s/\s\+$//e
-endfunction
-
-nnoremap <silent> <Leader>rts :call TrimWhiteSpace()<CR>
-
-autocmd FileWritePre    * :call TrimWhiteSpace()
-autocmd FileAppendPre   * :call TrimWhiteSpace()
-autocmd FilterWritePre  * :call TrimWhiteSpace()
-autocmd BufWritePre     * :call TrimWhiteSpace()
-
-" Simple re-format for minified Javascript
-command! UnMinify call UnMinify()
-function! UnMinify()
-    %s/{\ze[^\r\n]/{\r/g
-    %s/){/) {/g
-    %s/};\?\ze[^\r\n]/\0\r/g
-    %s/;\ze[^\r\n]/;\r/g
-    %s/[^\s]\zs[=&|]\+\ze[^\s]/ \0 /g
-    normal ggVG=
-endfunction
 
 " Mkdir on file save if dir doesnt exist
 function s:MkNonExDir(file, buf)
@@ -213,42 +171,9 @@ augroup END
 " vnoremap <C-j> :m '>+1<CR>gv=gv
 " vnoremap <C-k> :m '<-2<CR>gv=gv
 
-" Abbreviations
-iabbr jslog console.log('foo');
-iabbr pry binding.pry
-
 " Auto load better parentheses
 " au VimEnter * RainbowParenthesesToggle
 " au Syntax * RainbowParenthesesLoadRound
 " au Syntax * RainbowParenthesesLoadSquare
 " au Syntax * RainbowParenthesesLoadBraces
 
-" The Silver Searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
-
-" bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" Disable CtrP cache
-let g:ctrlp_use_caching = 0
-
-" Automatically toggle paste mode
-let &t_SI .= "\<Esc>[?2004h"
-let &t_EI .= "\<Esc>[?2004l"
-
-inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
-
-function! XTermPasteBegin()
-  set pastetoggle=<Esc>[201~
-  set paste
-  return ""
-endfunction
