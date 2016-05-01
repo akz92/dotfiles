@@ -1,0 +1,7 @@
+*.jpg
+*.png
+*.gif
+*.gem
+DS_Store
+tmp/
+log/
