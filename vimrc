@@ -14,6 +14,8 @@ set showcmd                     " Show incomplete cmds down the bottom
 set autoread                    " Reload files changed outside vim
 set cursorline
 set colorcolumn=80
+set autochdir                   " Set current directory to be the same as the current file
+" Fast saving
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
@@ -25,6 +27,9 @@ syntax on "turn on syntax highlighting
 " The mapleader has to be set before vundle starts loading all
 " the plugins.
 let mapleader=" "
+nmap <leader>w :w!<cr>
+nmap <leader>x :x!<cr>
+nmap <leader>q :q<cr>
 
 " =============== Vundle Initialization ===============
 
@@ -37,6 +42,7 @@ endif
 " =============== Theme ===============
 
 set background=dark
+" colorscheme tomorrow-night
 colorscheme tomorrow-night
 
 " ================ Turn Off Swap Files ==============
@@ -111,9 +117,6 @@ set smartcase       " ...unless we type a capital
 
 " The Silver Searcher
 if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
@@ -121,8 +124,14 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-" bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+" When you press gv you Ag after the selected text
+vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
+
+map <leader>a :Ag
+map <leader>n :cn<cr>
+map <leader>p :cp<cr>
+map <leader>nf :cnf<cr>
+map <leader>pf :cpf<cr>
 
 " ================ Splits ======================
 
@@ -135,6 +144,25 @@ nnoremap <C-H> <C-W><C-H>
 " Open new split panes to right and bottom
 set splitbelow
 set splitright
+
+" ================ Movements ======================
+
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+
+" move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+
+" highlight last inserted text
+nnoremap gV `[v`]
+
+" toggle gundo
+nnoremap <leader>u :GundoToggle<CR>
+
+" save session
+nnoremap <leader>s :mksession<CR>
 
 " ================ Abbreviations ======================
 
@@ -174,3 +202,29 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
+function! CmdLine(str)
+    exe "menu Foo.Bar :" . a:str
+    emenu Foo.Bar
+    unmenu Foo
+endfunction
+
+function! VisualSelection(direction, extra_filter) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", '\\/.*$^~[]')
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    if a:direction == 'b'
+        execute "normal ?" . l:pattern . "^M"
+    elseif a:direction == 'gv'
+        call CmdLine("Ag \"" . l:pattern . "\" " )
+    elseif a:direction == 'replace'
+        call CmdLine("%s" . '/'. l:pattern . '/')
+    elseif a:direction == 'f'
+        execute "normal /" . l:pattern . "^M"
+    endif
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction

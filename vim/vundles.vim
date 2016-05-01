@@ -81,6 +81,14 @@ Plugin 'chriskempson/vim-tomorrow-theme'
 
 Plugin 'yegappan/grep'
 
+Plugin 'chriskempson/base16-vim'
+
+Plugin 'tomasr/molokai'
+
+Plugin 'sjl/gundo.vim'
+
+Plugin 'rking/ag.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
