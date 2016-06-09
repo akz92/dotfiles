@@ -5,24 +5,24 @@ set nocompatible
 " ================ General Config ====================
 
 set number
-set numberwidth=5
+set numberwidth=4
 set enc=utf-8
 set laststatus=2                " Always display the status line
 set autowrite                   " Automatically :write before running commands
 set visualbell                  " No sounds
 set showcmd                     " Show incomplete cmds down the bottom
 set autoread                    " Reload files changed outside vim
-set cursorline
-set colorcolumn=80
+set cursorline                  " Highlight current line
+set colorcolumn=80              " Display a vertical line on the 80th line
 set autochdir                   " Set current directory to be the same as the current file
-" Fast saving
+set guifont=Monaco:h14
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
 " http://items.sjbach.com/319/configuring-vim-right
 set hidden
 
-syntax on "turn on syntax highlighting
+syntax on                       " Turn on syntax highlighting
 
 " The mapleader has to be set before vundle starts loading all
 " the plugins.
@@ -41,9 +41,11 @@ endif
 
 " =============== Theme ===============
 
+let g:airline_theme='onedark'
+set termguicolors
+
 set background=dark
-" colorscheme tomorrow-night
-colorscheme tomorrow-night
+colorscheme onedark
 
 " ================ Turn Off Swap Files ==============
 
@@ -67,7 +69,6 @@ set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 set expandtab
-set shiftround
 
 " Auto indent pasted text
 nnoremap p p=`]<C-o>
@@ -80,9 +81,6 @@ set list listchars=tab:\ \ ,trail:·
 
 " Automatically remove trailling whitespaces
 autocmd BufWritePre * :%s/\s\+$//e
-
-set nowrap       "Don't wrap lines
-set linebreak    "Wrap lines at convenient points
 
 " Automatically toggle paste mode
 let &t_SI .= "\<Esc>[?2004h"
@@ -111,7 +109,7 @@ set sidescroll=1
 " ================ Search ===========================
 
 set incsearch       " Find the next match as we type the search
-set hlsearch        " Highlight searches by default
+set nohlsearch        " Doens't highlight searches by default
 set ignorecase      " Ignore case when searching...
 set smartcase       " ...unless we type a capital
 
@@ -127,11 +125,11 @@ endif
 " When you press gv you Ag after the selected text
 vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
 
-map <leader>a :Ag
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
-map <leader>nf :cnf<cr>
-map <leader>pf :cpf<cr>
+" map <leader>a :Ag
+" map <leader>n :cn<cr>
+" map <leader>p :cp<cr>
+" map <leader>nf :cnf<cr>
+" map <leader>pf :cpf<cr>
 
 " ================ Splits ======================
 
@@ -145,14 +143,19 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
+" Maximize split
+nnoremap <Leader>ff :MaximizerToggle<CR>
+
+" ================ Explorer ======================
+
+let g:netrw_liststyle=3
+let g:netrw_banner = 0
+nnoremap <Leader>e :NERDTree<CR>
+
 " ================ Movements ======================
 
-" move vertically by visual line
-nnoremap j gj
-nnoremap k gk
-
 " move to beginning/end of line
-nnoremap B ^
+" nnoremap B ^
 nnoremap E $
 
 " highlight last inserted text
@@ -164,15 +167,59 @@ nnoremap <leader>u :GundoToggle<CR>
 " save session
 nnoremap <leader>s :mksession<CR>
 
+" ================ Buffers ======================
+
+" Use the right side of the screen
+let g:buffergator_viewport_split_policy = 'R'
+
+" I want my own keymappings...
+let g:buffergator_suppress_keymaps = 1
+
+" Looper buffers
+"let g:buffergator_mru_cycle_loop = 1
+
+" Go to the previous buffer open
+nmap <leader>jj :BuffergatorMruCyclePrev<cr>
+
+" Go to the next buffer open
+nmap <leader>kk :BuffergatorMruCycleNext<cr>
+
+" View the entire list of buffers open
+nmap <leader>bb :BuffergatorToggle<cr>
+
+" Close buffer (closes it's slit too)
+nmap <leader>bd :bd<cr>
+
+" Close buffer only
+nmap <leader>bq :bp <BAR> bd #<cr>
+
+" Enable the list of buffers
+" let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+" let g:airline#extensions#tabline#fnamemod = ':t'
+
 " ================ Abbreviations ======================
 
 iabbr pry binding.pry
+iabbr dbg debugger;
+iabbr log console.log('foo');
+
+" ================ Rails ======================
+
+cmap rc Rails console
+
+" ================ Tags ======================
+
+nnoremap <C-]> <Esc>:exe "ptjump " . expand("<cword>")<Esc>
 
 " ================ Others ======================
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
+" Tell syntastic to ignore ionic tags
+let g:syntastic_html_tidy_ignore_errors=["<ion-", "discarding unexpected </ion-", " proprietary attribute \"ng-"]
 
 " Mkdir on file save if dir doesnt exist
 function s:MkNonExDir(file, buf)
@@ -195,12 +242,6 @@ augroup END
 " inoremap <C-k> <Esc>:m .-2<CR>==gi
 " vnoremap <C-j> :m '>+1<CR>gv=gv
 " vnoremap <C-k> :m '<-2<CR>gv=gv
-
-" Auto load better parentheses
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
 
 function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str

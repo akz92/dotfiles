@@ -19,9 +19,9 @@ Plugin 'tpope/vim-endwise'
 
 Plugin 'tpope/vim-fugitive'
 
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
 
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'vim-airline/vim-airline-themes'
 
 Plugin 'ap/vim-css-color'
 
@@ -33,21 +33,9 @@ Plugin 'tpope/vim-surround'
 
 Plugin 'scrooloose/syntastic'
 
-Plugin 'elzr/vim-json'
-
-Plugin 'tpope/vim-sensible'
-
 Plugin 'hail2u/vim-css3-syntax'
 
-Plugin 'tpope/vim-haml'
-
 Plugin 'Raimondi/delimitMate'
-
-Plugin 'Shougo/neocomplete.vim'
-
-Plugin 'tpope/vim-bundler'
-
-Plugin 'morhetz/gruvbox'
 
 Plugin 'mhinz/vim-startify'
 
@@ -55,11 +43,7 @@ Plugin 'TaskList.vim'
 
 Plugin 'tpope/vim-commentary'
 
-Plugin 'kchmck/vim-coffee-script'
-
 Plugin 'cakebaker/scss-syntax.vim'
-
-Plugin 'ervandew/supertab'
 
 Plugin 'pangloss/vim-javascript'
 
@@ -67,27 +51,35 @@ Plugin 'tpope/vim-abolish.git'
 
 Plugin 'tpope/vim-speeddating'
 
-Plugin 'danro/rename.vim'
-
 Plugin 'tpope/vim-eunuch'
 
 Plugin 'scrooloose/nerdtree'
 
 Plugin 'easymotion/vim-easymotion'
 
-Plugin 'kien/rainbow_parentheses.vim'
-
-Plugin 'chriskempson/vim-tomorrow-theme'
-
-Plugin 'yegappan/grep'
-
-Plugin 'chriskempson/base16-vim'
-
-Plugin 'tomasr/molokai'
-
 Plugin 'sjl/gundo.vim'
 
 Plugin 'rking/ag.vim'
+
+Plugin 'jeetsukumaran/vim-buffergator'
+
+Plugin 'w0ng/vim-hybrid'
+
+Plugin 'mattn/emmet-vim'
+
+Plugin 'joshdick/onedark.vim'
+
+Plugin 'szw/vim-maximizer'
+
+Plugin 'joshdick/airline-onedark.vim'
+
+Plugin 'leafgarland/typescript-vim'
+
+Plugin 'Valloric/YouCompleteMe'
+
+Plugin 'wakatime/vim-wakatime'
+
+Plugin 'schickling/vim-bufonly'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
