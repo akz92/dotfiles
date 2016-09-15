@@ -16,6 +16,7 @@ set cursorline                  " Highlight current line
 set colorcolumn=80              " Display a vertical line on the 80th line
 set autochdir                   " Set current directory to be the same as the current file
 set guifont=Monaco:h14
+set iskeyword-=-
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
@@ -31,12 +32,11 @@ nmap <leader>w :w!<cr>
 nmap <leader>x :x!<cr>
 nmap <leader>q :q<cr>
 
-" =============== Vundle Initialization ===============
+" =============== Plug Initialization ===============
 
-" This loads all the plugins specified in ~/.vim/vundles.vim
-" Use Vundle plugin to manage all other plugins
-if filereadable(expand("~/.vim/vundles.vim"))
-  source ~/.vim/vundles.vim
+" This loads all the plugins specified in ~/.vim/plugins.vim
+if filereadable(expand("~/.vim/plugins.vim"))
+  source ~/.vim/plugins.vim
 endif
 
 " =============== Theme ===============
@@ -113,14 +113,7 @@ set nohlsearch        " Doens't highlight searches by default
 set ignorecase      " Ignore case when searching...
 set smartcase       " ...unless we type a capital
 
-" The Silver Searcher
-if executable('ag')
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
+noremap <C-P> :FZFR<CR>
 
 " When you press gv you Ag after the selected text
 vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
@@ -166,6 +159,9 @@ nnoremap <leader>u :GundoToggle<CR>
 
 " save session
 nnoremap <leader>s :mksession<CR>
+
+set iskeyword-=_
+set iskeyword-=-
 
 " ================ Buffers ======================
 
@@ -269,3 +265,29 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+
+command! UnMinify call UnMinify()
+function! UnMinify()
+    %s/{\ze[^\r\n]/{\r/g
+    %s/){/) {/g
+    %s/};\?\ze[^\r\n]/\0\r/g
+    %s/;\ze[^\r\n]/;\r/g
+    %s/[^\s]\zs[=&|]\+\ze[^\s]/ \0 /g
+    normal ggVG=
+endfunction
+
+" make test commands execute using dispatch.vim
+let test#strategy = "dispatch"
+
+function! s:find_root()
+  for vcs in ['.git', '.svn', '.hg']
+    let dir = finddir(vcs.'/..', ';')
+    if !empty(dir)
+      execute 'FZF' dir
+      return
+    endif
+  endfor
+  FZF
+endfunction
+
+command! FZFR call s:find_root()
