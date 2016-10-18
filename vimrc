@@ -14,9 +14,9 @@ set showcmd                     " Show incomplete cmds down the bottom
 set autoread                    " Reload files changed outside vim
 set cursorline                  " Highlight current line
 set colorcolumn=80              " Display a vertical line on the 80th line
-set autochdir                   " Set current directory to be the same as the current file
 set guifont=Monaco:h14
 set iskeyword-=-
+set timeoutlen=1000 ttimeoutlen=0
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
@@ -31,6 +31,8 @@ let mapleader=" "
 nmap <leader>w :w!<cr>
 nmap <leader>x :x!<cr>
 nmap <leader>q :q<cr>
+noremap <C-P> :FZF<CR>
+noremap <C-B> :Buffers<CR>
 
 " =============== Plug Initialization ===============
 
@@ -82,18 +84,6 @@ set list listchars=tab:\ \ ,trail:·
 " Automatically remove trailling whitespaces
 autocmd BufWritePre * :%s/\s\+$//e
 
-" Automatically toggle paste mode
-let &t_SI .= "\<Esc>[?2004h"
-let &t_EI .= "\<Esc>[?2004l"
-
-inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
-
-function! XTermPasteBegin()
-  set pastetoggle=<Esc>[201~
-  set paste
-  return ""
-endfunction
-
 " ================ Folds ============================
 
 set foldmethod=indent   "fold based on indent
@@ -112,8 +102,6 @@ set incsearch       " Find the next match as we type the search
 set nohlsearch        " Doens't highlight searches by default
 set ignorecase      " Ignore case when searching...
 set smartcase       " ...unless we type a capital
-
-noremap <C-P> :FZFR<CR>
 
 " When you press gv you Ag after the selected text
 vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
@@ -207,7 +195,34 @@ cmap rc Rails console
 
 " ================ Tags ======================
 
-nnoremap <C-]> <Esc>:exe "ptjump " . expand("<cword>")<Esc>
+" nnoremap <C-]> <Esc>:exe "ptjump " . expand("<cword>")<Esc>
+
+" ================ Tests ======================
+
+" make test commands execute using dispatch.vim
+let test#strategy = "dispatch"
+
+" ================ UltiSnips ======================
+
+let g:UltiSnipsEditSplit = 'horizontal'
+let g:UltiSnipsListSnippets = '<nop>'
+let g:UltiSnipsExpandTrigger = '<c-l>'
+let g:UltiSnipsJumpForwardTrigger = '<c-l>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-b>'
+let g:ulti_expand_or_jump_res = 0
+
+" ================ NERDTree ======================
+
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeHijackNetrw = 0
+let g:NERDTreeWinSize = 31
+let g:NERDTreeChDirMode = 2
+let g:NERDTreeAutoDeleteBuffer = 1
+let g:NERDTreeShowBookmarks = 1
+let g:NERDTreeCascadeOpenSingleChildDir = 1
+
+"Quit vim if only open buffer is NerdTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " ================ Others ======================
 
@@ -230,14 +245,6 @@ augroup BWCCreateDir
     autocmd!
     autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
-
-" Move lines using Ctrl+j and Ctrl+k
-" nnoremap <C-j> :m .+1<CR>==
-" nnoremap <C-k> :m .-2<CR>==
-" inoremap <C-j> <Esc>:m .+1<CR>==gi
-" inoremap <C-k> <Esc>:m .-2<CR>==gi
-" vnoremap <C-j> :m '>+1<CR>gv=gv
-" vnoremap <C-k> :m '<-2<CR>gv=gv
 
 function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
@@ -276,18 +283,6 @@ function! UnMinify()
     normal ggVG=
 endfunction
 
-" make test commands execute using dispatch.vim
-let test#strategy = "dispatch"
-
-function! s:find_root()
-  for vcs in ['.git', '.svn', '.hg']
-    let dir = finddir(vcs.'/..', ';')
-    if !empty(dir)
-      execute 'FZF' dir
-      return
-    endif
-  endfor
-  FZF
-endfunction
-
-command! FZFR call s:find_root()
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)"
