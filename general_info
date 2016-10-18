@@ -1,0 +1,66 @@
+Apps:
+  iTerm3
+  Chrome
+  GapDebug
+  Postman
+  Wunderlist
+  Airflow
+  gfxCardStatus
+  Alfred 3
+  Firefox
+  Transmission
+  VLC
+  Quartz Debug
+  LibreOffice
+  Postgres
+  SteelSeries Engine 3
+  Steam
+  MacVim
+  Spotify
+  Telegram
+  The Unarchiver
+  iTunes Media Key Disabler
+  Android Studio
+  Whatsapp
+  Dropbox
+  Android File Transfer
+  BetterSnapTool
+  Karabiner
+  Seil
+
+Terminal:
+  vim 8
+  zsh
+  zplug
+  nvm
+  rbenv
+  npm
+  android-platform-tools
+  fzf
+  git
+  heroku
+  heroku-toolbelt
+  imagemagick
+  nmap
+  ranger
+  tmux?
+  rtorrent?
+  kwm?
+  sconsify?
+
+Backup:
+  fotos
+  script subtitles
+  dotfiles
+  Karabiner private.xml
+
+Karabiner:
+  Press Command+Q twice to Quit Application
+  Control_L to Control_L (+ When you type Control_L only, send Escape)
+  Key repeat:
+    Delay until repeat: 500ms
+      Key repeat: 83
+
+Seil:
+  Change the caps lock key -> 59
+  Change Command_R -> 80
