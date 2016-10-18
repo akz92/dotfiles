@@ -1,0 +1,363 @@
+<?xml version="1.0"?>
+<root>
+  <item>
+      <name>Tap shift to move over words</name>
+      <appendix>Shift keys move the cursor one word forward or backward when pressed alone. When used with other keys they act as normal shifts.</appendix>
+      <identifier>private.shifts_to_forward_backward_word</identifier>
+
+      <autogen>--KeyOverlaidModifier-- KeyCode::SHIFT_R, ModifierFlag::SHIFT_R | ModifierFlag::NONE, KeyCode::SHIFT_R, KeyCode::CURSOR_RIGHT, ModifierFlag::OPTION_L</autogen>
+      <autogen>--KeyOverlaidModifier-- KeyCode::SHIFT_L, ModifierFlag::SHIFT_L | ModifierFlag::NONE, KeyCode::SHIFT_L, KeyCode::CURSOR_LEFT, ModifierFlag::OPTION_L</autogen>
+
+  </item>
+
+  <item>
+    <name>Remap F19 to Hyper</name>
+    <appendix>OS X doesn't have a Hyper. This maps F19 to Control + Shift + Option + Command.</appendix>
+
+    <identifier>usercustom.f19_to_hyper</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::F19,
+
+      KeyCode::COMMAND_R,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom Arrow Down</name>
+
+    <identifier>usercustom.custom_cursor_down</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::K,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::CURSOR_DOWN
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom Arrow Up</name>
+
+    <identifier>usercustom.custom_cursor_up</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::I,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::CURSOR_UP
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom Arrow Left</name>
+
+    <identifier>usercustom.custom_cursor_left</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::J,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::CURSOR_UP
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom Arrow Right</name>
+
+    <identifier>usercustom.custom_cursor_right</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::L,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::CURSOR_UP
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom 1</name>
+
+    <identifier>usercustom.custom_1</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::A,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::1
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom 2</name>
+
+    <identifier>usercustom.custom_2</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::S,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::2
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom 3</name>
+
+    <identifier>usercustom.custom_3</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::D,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::3
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom 4</name>
+
+    <identifier>usercustom.custom_4</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::F,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::4
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom 5</name>
+
+    <identifier>usercustom.custom_5</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::G,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::5
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom 6</name>
+
+    <identifier>usercustom.custom_6</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::H,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::6
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom 7</name>
+
+    <identifier>usercustom.custom_7</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::J,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::7
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom 8</name>
+
+    <identifier>usercustom.custom_8</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::K,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::8
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom 9</name>
+
+    <identifier>usercustom.custom_9</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::L,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::9
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom 0</name>
+
+    <identifier>usercustom.custom_0</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::SEMICOLON,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::0
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom !</name>
+
+    <identifier>usercustom.custom_!</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::Q,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::1, ModifierFlag::SHIFT_L
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom @</name>
+
+    <identifier>usercustom.custom_@</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::W,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::2, ModifierFlag::SHIFT_L
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom #</name>
+
+    <identifier>usercustom.custom_#</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::E,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::3, ModifierFlag::SHIFT_L
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom $</name>
+
+    <identifier>usercustom.custom_$</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::R,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::4, ModifierFlag::SHIFT_L
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom %</name>
+
+    <identifier>usercustom.custom_%</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::T,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::5, ModifierFlag::SHIFT_L
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom ^</name>
+
+    <identifier>usercustom.custom_^</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::Y,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::6, ModifierFlag::SHIFT_L
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom e_comm</name>
+
+    <identifier>usercustom.custom_e_comm</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::U,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::7, ModifierFlag::SHIFT_L
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom *</name>
+
+    <identifier>usercustom.custom_*</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::I,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::8, ModifierFlag::SHIFT_L
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom (</name>
+
+    <identifier>usercustom.custom_(</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::O,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::9, ModifierFlag::SHIFT_L
+    </autogen>
+  </item>
+
+  <item>
+    <name>Custom )</name>
+
+    <identifier>usercustom.custom_)</identifier>
+
+    <autogen>
+      --KeyToKey--
+      KeyCode::P,
+      ModifierFlag::OPTION_R | ModifierFlag::SHIFT_R | ModifierFlag::CONTROL_R | ModifierFlag::COMMAND_R,
+
+      KeyCode::0, ModifierFlag::SHIFT_L
+    </autogen>
+  </item>
+</root>
