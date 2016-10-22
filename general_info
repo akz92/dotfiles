@@ -49,6 +49,7 @@ Terminal:
   sconsify?
   wemo
   iponmap
+  subliminal
 
 Backup:
   fotos
