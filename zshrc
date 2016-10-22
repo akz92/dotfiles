@@ -4,6 +4,13 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
+export GOPATH="${HOME}/.go"
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+
+test -d "${GOPATH}" || mkdir "${GOPATH}"
+test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
+
 alias vim="/usr/local/Cellar/macvim/8.0-110/MacVim.app/Contents/MacOS/Vim"
 alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
@@ -48,7 +55,7 @@ zplug "djui/alias-tips"
 # zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
-zplug "themes/alanpeabody", from:oh-my-zsh
+zplug "akz92/akz-zsh-theme"
 zplug "plugins/git", from:oh-my-zsh
 zplug "akz92/ion-zsh"
 zplug "lukechilds/zsh-nvm"
