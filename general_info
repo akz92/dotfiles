@@ -43,10 +43,12 @@ Terminal:
   imagemagick
   nmap
   ranger
-  tmux?
+  tmux
   rtorrent?
-  kwm?
+  kwm
   sconsify?
+  wemo
+  iponmap
 
 Backup:
   fotos
