@@ -36,6 +36,12 @@ noremap <C-B> :Buffers<CR>
 
 " =============== Plug Initialization ===============
 
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
 " This loads all the plugins specified in ~/.vim/plugins.vim
 if filereadable(expand("~/.vim/plugins.vim"))
   source ~/.vim/plugins.vim
@@ -189,10 +195,6 @@ iabbr pry binding.pry
 iabbr dbg debugger;
 iabbr log console.log('foo');
 
-" ================ Rails ======================
-
-cmap rc Rails console
-
 " ================ Tags ======================
 
 " nnoremap <C-]> <Esc>:exe "ptjump " . expand("<cword>")<Esc>
@@ -201,6 +203,9 @@ cmap rc Rails console
 
 " make test commands execute using dispatch.vim
 let test#strategy = "dispatch"
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>l :TestLast<CR>
 
 " ================ UltiSnips ======================
 
@@ -229,7 +234,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
-" Tell syntastic to ignore ionic tags
+" Tell syntastic to ignore ionic and angular tags
 let g:syntastic_html_tidy_ignore_errors=["<ion-", "discarding unexpected </ion-", " proprietary attribute \"ng-"]
 
 " Mkdir on file save if dir doesnt exist
@@ -284,5 +289,3 @@ function! UnMinify()
 endfunction
 
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
-nmap gx <Plug>(openbrowser-smart-search)
-vmap gx <Plug>(openbrowser-smart-search)"

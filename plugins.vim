@@ -1,85 +1,80 @@
-call plug#begin()
+call plug#begin('~/.vim/bundle')
 
-Plug 'tpope/vim-rails'
-
-Plug 'slim-template/vim-slim'
-
-Plug 'tpope/vim-endwise'
-
-Plug 'tpope/vim-fugitive'
-
-Plug 'vim-airline/vim-airline'
-
-Plug 'vim-airline/vim-airline-themes'
-
-Plug 'ap/vim-css-color'
-
-Plug 'airblade/vim-gitgutter'
-
+" Manipulate files
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle'   }
 Plug 'tpope/vim-surround'
-
-Plug 'scrooloose/syntastic'
-
-Plug 'hail2u/vim-css3-syntax'
-
-Plug 'Raimondi/delimitMate'
-
-Plug 'mhinz/vim-startify'
-
-Plug 'TaskList.vim'
-
-Plug 'tpope/vim-commentary'
-
-Plug 'cakebaker/scss-syntax.vim'
-
-Plug 'pangloss/vim-javascript'
-
-Plug 'tpope/vim-abolish'
-
-Plug 'tpope/vim-speeddating'
-
 Plug 'tpope/vim-eunuch'
 
-Plug 'scrooloose/nerdtree'
+" Search files
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
-Plug 'easymotion/vim-easymotion'
-
-Plug 'sjl/gundo.vim'
-
-Plug 'jeetsukumaran/vim-buffergator'
-
-Plug 'w0ng/vim-hybrid'
-
-Plug 'mattn/emmet-vim'
-
-Plug 'joshdick/onedark.vim'
-
-Plug 'szw/vim-maximizer'
-
-Plug 'leafgarland/typescript-vim'
-
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-
+" Productivity
 Plug 'wakatime/vim-wakatime'
 
+" Buffer and window manipulations
 Plug 'schickling/vim-bufonly'
+Plug 'jeetsukumaran/vim-buffergator'
 
+" Motion
+Plug 'easymotion/vim-easymotion', { 'on': '<plug>(easymotion-s2)' }
+
+" Completion
+Plug 'Valloric/YouCompleteMe'
 Plug 'Valloric/MatchTagAlways'
+Plug 'Raimondi/delimitMate'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-speeddating'
 
-Plug 'wellle/targets.vim'
+" Tree
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
+" Layout
+Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
+
+" Status
+Plug 'vim-airline/vim-airline'
+
+" Syntax
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-commentary'
+
+" Syntax color
+Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'slim-template/vim-slim'
+Plug 'ap/vim-css-color'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'vim-ruby/vim-ruby'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'leafgarland/typescript-vim'
+
+" Color themes
+Plug 'joshdick/onedark.vim'
+
+" Rails section
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-rails'
+
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
+" To avaliate
+" Plug 'majutsushi/tagbar'
+" Plug 'xolox/vim-easytags'
+" Plug 'tpope/vim-sensible'
+" Plug 'wincent/command-t'
+" Plug 'elzr/vim-json'
+" Plug 'gregsexton/MatchTag'
 Plug 'janko-m/vim-test'
-
-Plug 'kylef/apiblueprint.vim'
+" Plug 'ervandew/supertab'
+" Plug 'tpope/vim-abolish'
 
 Plug 'tpope/vim-dispatch'
+Plug 'wellle/targets.vim'
 
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-
-Plug 'SirVer/ultisnips'
-
-Plug 'honza/vim-snippets'
+Plug 'akz92/vim-ionic2'
 
 call plug#end()
-
-filetype plugin indent on
