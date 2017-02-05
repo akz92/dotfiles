@@ -4,14 +4,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
-export GOPATH="${HOME}/.go"
-export GOROOT="$(brew --prefix golang)/libexec"
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
-
-test -d "${GOPATH}" || mkdir "${GOPATH}"
-test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
-
-alias vim="/usr/local/Cellar/macvim/8.0-110/MacVim.app/Contents/MacOS/Vim"
+alias vim="/usr/local/Cellar/macvim/8.0-124/MacVim.app/Contents/MacOS/Vim"
 alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
 alias vimplug="vim ~/.vim/plugins.vim"
@@ -41,21 +34,32 @@ alias hrdm="heroku run bundle exec rake db:migrate"
 alias hrds="heroku run bundle exec rake db:seed"
 alias hrdsl="heroku run bundle exec rake db:schema:load"
 alias hl="heroku logs -t"
+alias ionpi="ionic prepare ios"
+alias termtypist="python ~/dev/termtypist/termtypist.py"
+alias notes="vim ~/Dropbox/Writer/Notes.md"
+alias hyperrc="vim ~/.hyper.js"
+alias ns="npm start"
+alias tmuxrc="vim ~/.tmux.conf"
+alias weather="curl wttr.in/campos_dos_goitacazes"
+if [ -n "$TMUX" ]; then alias fzf="fzf-tmux"; fi
 
-export VISUAL=/usr/local/Cellar/macvim/8.0-110/MacVim.app/Contents/MacOS/Vim
+export PATH=$PATH:/Users/akz/Library/Android/sdk/platform-tools/
+export VISUAL=/usr/local/Cellar/macvim/8.0-124/MacVim.app/Contents/MacOS/Vim
 export EDITOR="$VISUAL"
 
+unset ZPLUG_CACHE_FILE
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 export NVM_LAZY_LOAD=true
 
-zplug "hlissner/zsh-autopair", nice:10
+zplug "hlissner/zsh-autopair", defer:2
 zplug "zsh-users/zsh-completions"
 zplug "djui/alias-tips"
 # zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
-zplug "akz92/akz-zsh-theme"
+zplug "akz92/clean", as:theme
+# zplug "~/dev/clean", from:local, use:'clean.zsh-theme'
 zplug "plugins/git", from:oh-my-zsh
 zplug "akz92/ion-zsh"
 zplug "lukechilds/zsh-nvm"
@@ -86,3 +90,5 @@ setopt hist_ignore_space
 setopt hist_verify
 setopt inc_append_history
 setopt share_history # share command history data
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
