@@ -15,7 +15,6 @@ set autoread                    " Reload files changed outside vim
 set cursorline                  " Highlight current line
 set colorcolumn=80              " Display a vertical line on the 80th line
 set guifont=Monaco:h14
-set iskeyword-=-
 set timeoutlen=1000 ttimeoutlen=0
 
 " This makes vim act like all other editors, buffers can
@@ -79,8 +78,8 @@ set tabstop=2
 set expandtab
 
 " Auto indent pasted text
-nnoremap p p=`]<C-o>
-nnoremap P P=`]<C-o>
+" nnoremap p p=`]<C-o>
+" nnoremap P P=`]<C-o>
 
 filetype plugin indent on
 
@@ -109,15 +108,6 @@ set nohlsearch        " Doens't highlight searches by default
 set ignorecase      " Ignore case when searching...
 set smartcase       " ...unless we type a capital
 
-" When you press gv you Ag after the selected text
-vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
-
-" map <leader>a :Ag
-" map <leader>n :cn<cr>
-" map <leader>p :cp<cr>
-" map <leader>nf :cnf<cr>
-" map <leader>pf :cpf<cr>
-
 " ================ Splits ======================
 
 "Move tabs more naturally
@@ -130,9 +120,6 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
-" Maximize split
-nnoremap <Leader>ff :MaximizerToggle<CR>
-
 " ================ Explorer ======================
 
 let g:netrw_liststyle=3
@@ -141,53 +128,16 @@ nnoremap <Leader>e :NERDTree<CR>
 
 " ================ Movements ======================
 
-" move to beginning/end of line
-" nnoremap B ^
-nnoremap E $
-
 " highlight last inserted text
 nnoremap gV `[v`]
-
-" toggle gundo
-nnoremap <leader>u :GundoToggle<CR>
 
 " save session
 nnoremap <leader>s :mksession<CR>
 
-set iskeyword-=_
-set iskeyword-=-
-
 " ================ Buffers ======================
-
-" Use the right side of the screen
-let g:buffergator_viewport_split_policy = 'R'
-
-" I want my own keymappings...
-let g:buffergator_suppress_keymaps = 1
-
-" Looper buffers
-"let g:buffergator_mru_cycle_loop = 1
-
-" Go to the previous buffer open
-nmap <leader>jj :BuffergatorMruCyclePrev<cr>
-
-" Go to the next buffer open
-nmap <leader>kk :BuffergatorMruCycleNext<cr>
-
-" View the entire list of buffers open
-nmap <leader>bb :BuffergatorToggle<cr>
-
-" Close buffer (closes it's slit too)
-nmap <leader>bd :bd<cr>
 
 " Close buffer only
 nmap <leader>bq :bp <BAR> bd #<cr>
-
-" Enable the list of buffers
-" let g:airline#extensions#tabline#enabled = 1
-
-" Show just the filename
-" let g:airline#extensions#tabline#fnamemod = ':t'
 
 " ================ Abbreviations ======================
 
@@ -228,6 +178,23 @@ let g:NERDTreeCascadeOpenSingleChildDir = 1
 
 "Quit vim if only open buffer is NerdTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" ================ Relative numbers ============
+
+:au FocusLost * :set number
+:au FocusGained * :set relativenumber
+
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
+
+" ================ Text Objects ================
+
+for char in [ '-', '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '`' ]
+  execute 'xnoremap i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
+  execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
+  execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
+  execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
+endfor
 
 " ================ Others ======================
 
