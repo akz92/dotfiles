@@ -32,6 +32,8 @@ nmap <leader>x :x!<cr>
 nmap <leader>q :q<cr>
 noremap <C-P> :FZF<CR>
 noremap <C-B> :Buffers<CR>
+nmap <leader>an :ALENext<cr>
+nmap <leader>ap :ALEPrevious<cr>
 
 " =============== Plug Initialization ===============
 
@@ -89,6 +91,8 @@ set list listchars=tab:\ \ ,trail:·
 " Automatically remove trailling whitespaces
 autocmd BufWritePre * :%s/\s\+$//e
 
+let b:lion_squeeze_spaces=1
+
 " ================ Folds ============================
 
 set foldmethod=indent   "fold based on indent
@@ -107,6 +111,8 @@ set incsearch       " Find the next match as we type the search
 set nohlsearch        " Doens't highlight searches by default
 set ignorecase      " Ignore case when searching...
 set smartcase       " ...unless we type a capital
+" let g:far#source="ag"
+
 
 " ================ Splits ======================
 
@@ -124,7 +130,7 @@ set splitright
 
 let g:netrw_liststyle=3
 let g:netrw_banner = 0
-nnoremap <Leader>e :NERDTree<CR>
+nnoremap <Leader>e :NERDTreeFind<CR>
 
 " ================ Movements ======================
 
@@ -179,14 +185,6 @@ let g:NERDTreeCascadeOpenSingleChildDir = 1
 "Quit vim if only open buffer is NerdTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" ================ Relative numbers ============
-
-:au FocusLost * :set number
-:au FocusGained * :set relativenumber
-
-autocmd InsertEnter * :set number
-autocmd InsertLeave * :set relativenumber
-
 " ================ Text Objects ================
 
 for char in [ '-', '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '`' ]
@@ -195,6 +193,32 @@ for char in [ '-', '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', 
   execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
   execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
+
+" ================ Auto Complete ==============
+
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#snippets_directory='~/.vim/snippets/'
 
 " ================ Others ======================
 
@@ -243,16 +267,6 @@ function! VisualSelection(direction, extra_filter) range
 
     let @/ = l:pattern
     let @" = l:saved_reg
-endfunction
-
-command! UnMinify call UnMinify()
-function! UnMinify()
-    %s/{\ze[^\r\n]/{\r/g
-    %s/){/) {/g
-    %s/};\?\ze[^\r\n]/\0\r/g
-    %s/;\ze[^\r\n]/;\r/g
-    %s/[^\s]\zs[=&|]\+\ze[^\s]/ \0 /g
-    normal ggVG=
 endfunction
 
 let g:netrw_nogx = 1 " disable netrw's gx mapping.

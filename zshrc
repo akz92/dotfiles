@@ -1,10 +1,12 @@
 eval "$(rbenv init -)"
+eval $(thefuck --alias)
 setopt auto_cd
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
+bindkey "^y" autosuggest-accept
 
-alias vim="/usr/local/Cellar/macvim/8.0-124/MacVim.app/Contents/MacOS/Vim"
+alias vim="/usr/local/Cellar/macvim/*/MacVim.app/Contents/MacOS/Vim"
 alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
 alias vimplug="vim ~/.vim/plugins.vim"
@@ -12,15 +14,15 @@ alias vimpi="vim +PlugInstall"
 alias vimpc="vim +PlugClean"
 alias vimpu="vim +PlugUpdate"
 alias dev="cd ~/dev"
-alias rr="rake routes"
-alias rrf="rake routes | fzf"
-alias rs="rails s"
-alias rc="rails c"
-alias rdc="rake db:create"
-alias rdd="rake db:drop"
-alias rdm="rake db:migrate"
-alias rds="rake db:seed"
-alias rdsl="rake db:schema:load"
+alias rr="bundle exec rake routes"
+alias rrf="bundle exec rake routes | fzf"
+alias rs="bundle exec rails s"
+alias rc="bundle exec rails c"
+alias rdc="bundle exec rake db:create"
+alias rdd="bundle exec rake db:drop"
+alias rdm="bundle exec rake db:migrate"
+alias rds="bundle exec rake db:seed"
+alias rdsl="bundle exec rake db:schema:load"
 alias rdr="rdsl && rds"
 alias rgmi="rails g migration"
 alias rgmo="rails g model"
@@ -34,6 +36,8 @@ alias hrdm="heroku run bundle exec rake db:migrate"
 alias hrds="heroku run bundle exec rake db:seed"
 alias hrdsl="heroku run bundle exec rake db:schema:load"
 alias hl="heroku logs -t"
+alias hbc="heroku pg:backups:capture"
+alias hbd="heroku pg:backups:download"
 alias ionpi="ionic prepare ios"
 alias termtypist="python ~/dev/termtypist/termtypist.py"
 alias notes="vim ~/Dropbox/Writer/Notes.md"
@@ -41,11 +45,18 @@ alias hyperrc="vim ~/.hyper.js"
 alias ns="npm start"
 alias tmuxrc="vim ~/.tmux.conf"
 alias weather="curl wttr.in/campos_dos_goitacazes"
+alias ctags="`brew --prefix`/bin/ctags"
+alias fixpsql="rm /usr/local/var/postgres/postmaster.pid && brew services restart postgresql"
+alias qutebrowser="open -a /Applications/qutebrowser.app --args --enable-webengine-inspector"
+alias sconsify="~/Applications/sconsify"
 if [ -n "$TMUX" ]; then alias fzf="fzf-tmux"; fi
 
 export PATH=$PATH:/Users/akz/Library/Android/sdk/platform-tools/
-export VISUAL=/usr/local/Cellar/macvim/8.0-124/MacVim.app/Contents/MacOS/Vim
+export VISUAL=/usr/local/Cellar/macvim/*/MacVim.app/Contents/MacOS/Vim
+# export VISUAL=/usr/local/Cellar/macvim/8.0-133/MacVim.app/Contents/MacOS/Vim
 export EDITOR="$VISUAL"
+# export ANDROID_HOME="/Users/akz/Library/Android/sdk"
+# export ANDROID_NDK="/usr/local/opt/android-ndk/android-ndk-r14b"
 
 unset ZPLUG_CACHE_FILE
 export ZPLUG_HOME=/usr/local/opt/zplug
@@ -63,7 +74,6 @@ zplug "akz92/clean", as:theme
 zplug "plugins/git", from:oh-my-zsh
 zplug "akz92/ion-zsh"
 zplug "lukechilds/zsh-nvm"
-zplug "Tarrasch/zsh-bd"
 zplug "zplug/zplug"
 
 if ! zplug check; then

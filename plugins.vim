@@ -10,30 +10,29 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Completion
-Plug 'Valloric/YouCompleteMe'
+Plug 'Shougo/neocomplete.vim'
 Plug 'Valloric/MatchTagAlways'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
 
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+
 " Tree
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeFind' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Status
 Plug 'vim-airline/vim-airline'
 
-" Syntax
-Plug 'scrooloose/syntastic'
-Plug 'tpope/vim-commentary'
+" Lint
+Plug 'w0rp/ale'
+
 
 " Syntax color
-Plug 'slim-template/vim-slim'
-Plug 'ap/vim-css-color'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'vim-ruby/vim-ruby'
-Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'leafgarland/typescript-vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'akz92/vim-ionic2'
+" Plug '~/dev/ionic2-syntax.vim'
 
 " Color themes
 Plug 'joshdick/onedark.vim'
@@ -42,11 +41,14 @@ Plug 'joshdick/onedark.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
+" Test
 Plug 'janko-m/vim-test'
 
+" Misc
+Plug 'tpope/vim-commentary'
+Plug 'tommcdo/vim-lion'
+Plug 'brooth/far.vim'
 Plug 'tpope/vim-dispatch'
 Plug 'wellle/targets.vim'
-
-Plug 'akz92/vim-ionic2'
 
 call plug#end()
