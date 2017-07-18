@@ -3,7 +3,7 @@ call plug#begin('~/.vim/bundle')
 " Manipulate files
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle'   }
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-eunuch'
+Plug 'francoiscabrol/ranger.vim'
 
 " Search files
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -12,22 +12,16 @@ Plug 'junegunn/fzf.vim'
 " Completion
 Plug 'Shougo/neocomplete.vim'
 Plug 'Valloric/MatchTagAlways'
-Plug 'Raimondi/delimitMate'
+Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-endwise'
-
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 
-" Tree
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeFind' }
-Plug 'Xuyuanp/nerdtree-git-plugin'
-
 " Status
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
 
 " Lint
 Plug 'w0rp/ale'
-
 
 " Syntax color
 Plug 'sheerun/vim-polyglot'
@@ -48,7 +42,7 @@ Plug 'janko-m/vim-test'
 Plug 'tpope/vim-commentary'
 Plug 'tommcdo/vim-lion'
 Plug 'brooth/far.vim'
-Plug 'tpope/vim-dispatch'
 Plug 'wellle/targets.vim'
+Plug 'akz92/vim-angular2'
 
 call plug#end()
