@@ -1,12 +1,8 @@
 eval "$(rbenv init -)"
-eval $(thefuck --alias)
 setopt auto_cd
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-bindkey "^[[A" history-substring-search-up
-bindkey "^[[B" history-substring-search-down
-bindkey "^y" autosuggest-accept
 
-alias vim="/usr/local/Cellar/macvim/*/MacVim.app/Contents/MacOS/Vim"
+alias vim=$EDITOR
 alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
 alias vimplug="vim ~/.vim/plugins.vim"
@@ -44,46 +40,69 @@ alias notes="vim ~/Dropbox/Writer/Notes.md"
 alias hyperrc="vim ~/.hyper.js"
 alias ns="npm start"
 alias tmuxrc="vim ~/.tmux.conf"
+alias kittyrc="vim ~/dev/dotfiles/kitty.conf"
 alias weather="curl wttr.in/campos_dos_goitacazes"
 alias ctags="`brew --prefix`/bin/ctags"
 alias fixpsql="rm /usr/local/var/postgres/postmaster.pid && brew services restart postgresql"
 alias qutebrowser="open -a /Applications/qutebrowser.app --args --enable-webengine-inspector"
 alias sconsify="~/Applications/sconsify"
+alias wira="awc && ira"
 if [ -n "$TMUX" ]; then alias fzf="fzf-tmux"; fi
 
-export PATH=$PATH:/Users/akz/Library/Android/sdk/platform-tools/
-export VISUAL=/usr/local/Cellar/macvim/*/MacVim.app/Contents/MacOS/Vim
+export PATH=$PATH:/Users/akz/Library/Android/sdk/platform-tools
+export VISUAL=/usr/local/Cellar/macvim/8.0-137_2/MacVim.app/Contents/MacOS/Vim
 # export VISUAL=/usr/local/Cellar/macvim/8.0-133/MacVim.app/Contents/MacOS/Vim
 export EDITOR="$VISUAL"
 # export ANDROID_HOME="/Users/akz/Library/Android/sdk"
 # export ANDROID_NDK="/usr/local/opt/android-ndk/android-ndk-r14b"
 
-unset ZPLUG_CACHE_FILE
-export ZPLUG_HOME=/usr/local/opt/zplug
-source $ZPLUG_HOME/init.zsh
+# Setting ag as the default source for fzf
+# export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+# To apply the command to CTRL-T as well
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
 export NVM_LAZY_LOAD=true
 
-zplug "hlissner/zsh-autopair", defer:2
-zplug "zsh-users/zsh-completions"
-zplug "djui/alias-tips"
-# zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-history-substring-search"
-zplug "akz92/clean", as:theme
-# zplug "~/dev/clean", from:local, use:'clean.zsh-theme'
-zplug "plugins/git", from:oh-my-zsh
-zplug "akz92/ion-zsh"
-zplug "lukechilds/zsh-nvm"
-zplug "zplug/zplug"
+### Added by Zplugin's installer
+source '/Users/akz/.zplugin/bin/zplugin.zsh'
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+### End of Zplugin's installer chunk
 
-if ! zplug check; then
-  zplug install
+if ! [[ $(zplugin list) ]]; then
+  zplugin light zsh-users/zsh-autosuggestions
+  zplugin light zsh-users/zsh-syntax-highlighting
+  zplugin light hlissner/zsh-autopair
+  zplugin light akz92/clean
+  zplugin light akz92/ion-zsh
+  zplugin light lukechilds/zsh-nvm
+  zplugin snippet OMZ::plugins/git/git.plugin.zsh
 fi
-
-zplug load
 
 function gphm {
   git push heroku ${1:-master}:master
+}
+
+function vmi {
+  $EDITOR $(ls -td db/migrate/* | head -1)
+}
+
+function apps {
+  mdfind kMDItemContentType=\*.application-bundle
+}
+
+function oa {
+  open "$(apps | fzf)"
+}
+
+function pw {
+  openssl rand -base64 12
+}
+
+function qrc {
+  echo ${1} | curl -F-=\<- qrenco.de
 }
 
 ## Command history configuration
