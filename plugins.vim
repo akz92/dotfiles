@@ -3,7 +3,7 @@ call plug#begin('~/.vim/bundle')
 " Manipulate files
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle'   }
 Plug 'tpope/vim-surround'
-Plug 'francoiscabrol/ranger.vim'
+Plug 'francoiscabrol/ranger.vim', { 'on': 'Ranger' }
 
 " Search files
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -36,13 +36,13 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 " Test
-Plug 'janko-m/vim-test'
+Plug 'janko-m/vim-test', { 'on': ['TestNearest', 'TestFile', 'TestLast'] }
 
 " Misc
 Plug 'tpope/vim-commentary'
 Plug 'tommcdo/vim-lion'
-Plug 'brooth/far.vim'
+Plug 'brooth/far.vim', { 'on': 'Farp' }
 Plug 'wellle/targets.vim'
-Plug 'akz92/vim-angular2'
+Plug 'akz92/vim-angular2', { 'on': ['Angular2Controller', 'Angular2Html', 'Angular2Layout'] }
 
 call plug#end()

@@ -1,6 +1,7 @@
 eval "$(rbenv init -)"
 setopt auto_cd
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+bindkey '^ ' autosuggest-accept
 
 alias vim=$EDITOR
 alias zshrc="vim ~/.zshrc"
@@ -37,27 +38,25 @@ alias hbd="heroku pg:backups:download"
 alias ionpi="ionic prepare ios"
 alias termtypist="python ~/dev/termtypist/termtypist.py"
 alias notes="vim ~/Dropbox/Writer/Notes.md"
-alias hyperrc="vim ~/.hyper.js"
-alias ns="npm start"
 alias tmuxrc="vim ~/.tmux.conf"
-alias kittyrc="vim ~/dev/dotfiles/kitty.conf"
+alias kittyrc="vim $DOTFILES_PATH/kitty.conf"
+alias chunkwmrc="vim $DOTFILES_PATH/chunkwmrc"
+alias skhdrc="vim $DOTFILES_PATH/skhdrc"
 alias weather="curl wttr.in/campos_dos_goitacazes"
 alias ctags="`brew --prefix`/bin/ctags"
 alias fixpsql="rm /usr/local/var/postgres/postmaster.pid && brew services restart postgresql"
 alias qutebrowser="open -a /Applications/qutebrowser.app --args --enable-webengine-inspector"
-alias sconsify="~/Applications/sconsify"
 alias wira="awc && ira"
 if [ -n "$TMUX" ]; then alias fzf="fzf-tmux"; fi
 
 export PATH=$PATH:/Users/akz/Library/Android/sdk/platform-tools
 export VISUAL=/usr/local/Cellar/macvim/8.0-137_2/MacVim.app/Contents/MacOS/Vim
-# export VISUAL=/usr/local/Cellar/macvim/8.0-133/MacVim.app/Contents/MacOS/Vim
 export EDITOR="$VISUAL"
+export DOTFILES_PATH="$HOME/dev/dotfiles"
 # export ANDROID_HOME="/Users/akz/Library/Android/sdk"
 # export ANDROID_NDK="/usr/local/opt/android-ndk/android-ndk-r14b"
 
-# Setting ag as the default source for fzf
-# export FZF_DEFAULT_COMMAND='ag -g ""'
+# Setting rg as the default source for fzf
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
 # To apply the command to CTRL-T as well
@@ -93,16 +92,8 @@ function apps {
   mdfind kMDItemContentType=\*.application-bundle
 }
 
-function oa {
-  open "$(apps | fzf)"
-}
-
-function pw {
-  openssl rand -base64 12
-}
-
-function qrc {
-  echo ${1} | curl -F-=\<- qrenco.de
+function dt {
+  $EDITOR "$DOTFILES_PATH/$(ls $DOTFILES_PATH | fzf)"
 }
 
 ## Command history configuration

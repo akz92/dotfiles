@@ -70,7 +70,8 @@ set nowb
 " ================ Persistent Undo ==================
 
 " Keep undo history across sessions, by storing in file.
-call system('mkdir -p ~/.vim/undo')
+
+" call system('mkdir ~/.vim/undo')
 set undofile
 set undodir=~/.vim/undo
 
@@ -195,6 +196,7 @@ let g:neosnippet#snippets_directory='~/.vim/snippets/'
 
 nmap <leader>an :ALENext<cr>
 nmap <leader>ap :ALEPrevious<cr>
+let g:ale_lint_on_text_changed = 'never'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
 \   'html': [],

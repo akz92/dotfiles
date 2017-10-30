@@ -224,6 +224,10 @@ c.tabs.padding = {'top': 5, 'bottom': 5, 'left': 5, 'right': 5}
 #   - switching: Show the tab bar when switching tabs.
 c.tabs.show = 'always'
 
+# Width of the progress indicator (0 to disable).
+# Type: Int
+c.tabs.width.indicator = 0
+
 # The page to open if :open -t/-b/-w is used without URL. Use
 # `about:blank` for a blank page.
 # Type: FuzzyUrl
