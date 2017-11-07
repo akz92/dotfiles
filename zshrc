@@ -3,6 +3,8 @@ setopt auto_cd
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 bindkey '^ ' autosuggest-accept
 
+source ~/.secrets
+
 alias vim=$EDITOR
 alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
@@ -47,10 +49,11 @@ alias ctags="`brew --prefix`/bin/ctags"
 alias fixpsql="rm /usr/local/var/postgres/postmaster.pid && brew services restart postgresql"
 alias qutebrowser="open -a /Applications/qutebrowser.app --args --enable-webengine-inspector"
 alias wira="awc && ira"
+alias bws="brew search | fzf"
 if [ -n "$TMUX" ]; then alias fzf="fzf-tmux"; fi
 
 export PATH=$PATH:/Users/akz/Library/Android/sdk/platform-tools
-export VISUAL=/usr/local/Cellar/macvim/8.0-137_2/MacVim.app/Contents/MacOS/Vim
+export VISUAL=/usr/local/Cellar/macvim/8.0-141/MacVim.app/Contents/MacOS/Vim
 export EDITOR="$VISUAL"
 export DOTFILES_PATH="$HOME/dev/dotfiles"
 # export ANDROID_HOME="/Users/akz/Library/Android/sdk"

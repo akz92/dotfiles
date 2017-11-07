@@ -40,7 +40,7 @@ Plug 'janko-m/vim-test', { 'on': ['TestNearest', 'TestFile', 'TestLast'] }
 
 " Misc
 Plug 'tpope/vim-commentary'
-Plug 'tommcdo/vim-lion'
+Plug 'junegunn/vim-easy-align'
 Plug 'brooth/far.vim', { 'on': 'Farp' }
 Plug 'wellle/targets.vim'
 Plug 'akz92/vim-angular2', { 'on': ['Angular2Controller', 'Angular2Html', 'Angular2Layout'] }

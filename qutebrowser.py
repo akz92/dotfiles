@@ -6,6 +6,20 @@
 # Uncomment this to still load settings configured via autoconfig.yml
 # config.load_autoconfig()
 
+# Aliases for commands. The keys of the given dictionary are the
+# aliases, while the values are the commands they map to.
+# Type: Dict
+c.aliases = {'w': 'session-save', 'q': 'quit', 'wq': 'quit --save', 'gmail': 'open -t https://gmail.com', 'meuPonto': 'open -t http://www.meucontroledeponto.com.br', 'mopidy': 'open -t http://localhost:6680/moped', 'instapaper-add': 'spawn --userscript ~/.config/qutebrowser/instapaper_add', 'load_work': 'session-load work', 'instapaper': 'open -t https://instapaper.com', 'view-in-mpv': 'spawn --userscript ~/.config/qutebrowser/view_in_mpv'}
+
+# This setting can be used to map keys to other keys. When the key used
+# as dictionary-key is pressed, the binding for the key used as
+# dictionary-value is invoked instead. This is useful for global
+# remappings of keys, for example to map Ctrl-[ to Escape. Note that
+# when a key is bound (via `bindings.default` or `bindings.commands`),
+# the mapping is ignored.
+# Type: Dict
+c.bindings.key_mappings = {'<Ctrl-[>': '<Escape>', '<Ctrl-6>': '<Ctrl-^>', '<Ctrl-M>': '<Return>', '<Ctrl-J>': '<Return>', '<Shift-Return>': '<Return>', '<Enter>': '<Return>', '<Shift-Enter>': '<Return>', '<Ctrl-Enter>': '<Ctrl-Return>'}
+
 # Background color of the completion widget category headers.
 # Type: QssColor
 c.colors.completion.category.bg = '#6f7783'
@@ -46,6 +60,36 @@ c.colors.completion.match.fg = '#afe785'
 # Type: QssColor
 c.colors.completion.odd.bg = '#4a515d'
 
+# Background color for the download bar.
+# Type: QssColor
+c.colors.downloads.bar.bg = '#383c46'
+
+# Color gradient start for download backgrounds.
+# Type: QtColor
+c.colors.downloads.start.bg = '#72bef2'
+
+# Color gradient stop for download backgrounds.
+# Type: QtColor
+c.colors.downloads.stop.bg = 'green'
+
+# Color gradient interpolation system for download backgrounds.
+# Type: ColorSystem
+# Valid values:
+#   - rgb: Interpolate in the RGB color system.
+#   - hsv: Interpolate in the HSV color system.
+#   - hsl: Interpolate in the HSL color system.
+#   - none: Don't show a gradient.
+c.colors.downloads.system.bg = 'none'
+
+# Color gradient interpolation system for download text.
+# Type: ColorSystem
+# Valid values:
+#   - rgb: Interpolate in the RGB color system.
+#   - hsv: Interpolate in the HSV color system.
+#   - hsl: Interpolate in the HSL color system.
+#   - none: Don't show a gradient.
+c.colors.downloads.system.fg = 'none'
+
 # Background color for hints. Note that you can use a `rgba(...)` value
 # for transparency.
 # Type: QssColor
@@ -66,6 +110,10 @@ c.colors.keyhint.bg = 'rgba(0, 0, 0, 65%)'
 # Highlight color for keys to complete the current keychain.
 # Type: QssColor
 c.colors.keyhint.suffix.fg = '#FFFF00'
+
+# Background color of an error message.
+# Type: QssColor
+c.colors.messages.error.bg = '#e88388'
 
 # Background color of the statusbar in command mode.
 # Type: QssColor
@@ -127,9 +175,26 @@ c.completion.shrink = False
 #   - never: Never show a confirmation.
 c.confirm_quit = ['never']
 
+# List of domains that should always be loaded, despite being ad-
+# blocked. Domains may contain * and ? wildcards and are otherwise
+# required to exactly match the requested domain. Local domains are
+# always exempt from hostblocking.
+# Type: List of String
+c.content.host_blocking.whitelist = ['piwik.org', 'herokuapp.com']
+
 # Enables or disables plugins in Web pages.
 # Type: Bool
 c.content.plugins = True
+
+# The directory to save downloads to. If unset, a sensible os-specific
+# default is used.
+# Type: Directory
+c.downloads.location.directory = '~/Downloads'
+
+# Prompt the user for the download location. If set to false,
+# `downloads.location.directory` will be used.
+# Type: Bool
+c.downloads.location.prompt = False
 
 # Font used in the completion categories.
 # Type: Font
@@ -167,6 +232,10 @@ c.fonts.messages.info = '10pt Monaco'
 # Type: Font
 c.fonts.messages.warning = '10pt Monaco'
 
+# Font used for prompts.
+# Type: Font
+c.fonts.prompts = '9pt sans-serif'
+
 # Font used in the statusbar.
 # Type: Font
 c.fonts.statusbar = '10pt Monaco'
@@ -174,6 +243,10 @@ c.fonts.statusbar = '10pt Monaco'
 # Font used in the tab bar.
 # Type: QtFont
 c.fonts.tabs = '10pt Monaco'
+
+# Font family for sans-serif fonts.
+# Type: FontFamily
+c.fonts.web.family.sans_serif = None
 
 # The default font size for regular text.
 # Type: Int
@@ -190,6 +263,14 @@ c.hints.chars = 'arstdhneio'
 # Make chars in hint strings uppercase.
 # Type: Bool
 c.hints.uppercase = True
+
+# Time from pressing a key to seeing the keyhint dialog (ms).
+# Type: Int
+c.keyhint.delay = 500
+
+# The rounding radius for the edges of prompts.
+# Type: Int
+c.prompt.radius = 3
 
 # Additional arguments to pass to Qt, without leading `--`. With
 # QtWebEngine, some Chromium arguments (see
@@ -224,6 +305,18 @@ c.tabs.padding = {'top': 5, 'bottom': 5, 'left': 5, 'right': 5}
 #   - switching: Show the tab bar when switching tabs.
 c.tabs.show = 'always'
 
+# The format to use for the tab title. The following placeholders are
+# defined:  * `{perc}`: The percentage as a string like `[10%]`. *
+# `{perc_raw}`: The raw percentage, e.g. `10` * `{title}`: The title of
+# the current web page * `{title_sep}`: The string ` - ` if a title is
+# set, empty otherwise. * `{index}`: The index of this tab. * `{id}`:
+# The internal tab ID of this tab. * `{scroll_pos}`: The page scroll
+# position. * `{host}`: The host of the current web page. * `{backend}`:
+# Either ''webkit'' or ''webengine'' * `{private}` : Indicates when
+# private mode is enabled.
+# Type: FormatString
+c.tabs.title.format = '{private} {index}: {title}'
+
 # Width of the progress indicator (0 to disable).
 # Type: Int
 c.tabs.width.indicator = 0
@@ -244,11 +337,38 @@ c.url.default_page = 'http://google.com'
 # Type: Dict
 c.url.searchengines = {'DEFAULT': 'https://google.com/search?q={}', 'y': 'http://www.youtube.com/results?search_query={}'}
 
+# The page(s) to open at the start.
+# Type: List of FuzzyUrl, or FuzzyUrl
+c.url.start_pages = 'https://google.com'
+
+# The format to use for the window title. The following placeholders are
+# defined:  * `{perc}`: The percentage as a string like `[10%]`. *
+# `{perc_raw}`: The raw percentage, e.g. `10` * `{title}`: The title of
+# the current web page * `{title_sep}`: The string ` - ` if a title is
+# set, empty otherwise. * `{id}`: The internal window ID of this window.
+# * `{scroll_pos}`: The page scroll position. * `{host}`: The host of
+# the current web page. * `{backend}`: Either ''webkit'' or
+# ''webengine'' * `{private}` : Indicates when private mode is enabled.
+# Type: FormatString
+c.window.title_format = '{perc}{title}'
+
 # Bindings for normal mode
-config.bind(',g', 'quickmark-load gmail')
-config.bind(',m', 'quickmark-load meucontroledeponto')
+config.bind(',g', 'gmail')
+config.bind(',i', 'instapaper')
+config.bind(',m', 'meuPonto')
+config.bind(',s', 'mopidy')
 config.bind(';p', 'hint links fill :open -p {hint-url}')
 config.bind('<ctrl+w>', 'close')
 config.bind('J', 'tab-prev')
 config.bind('K', 'tab-next')
-config.bind('lw', 'session-load work ;; window-only')
+config.bind('\\d', 'download-delete')
+config.bind('\\o', 'download-open')
+config.bind('sf', None)
+config.bind('si', 'instapaper-add')
+config.bind('sk', None)
+config.bind('sl', None)
+config.bind('slw', 'load_work')
+config.bind('sm', 'view-in-mpv')
+config.bind('ss', None)
+config.bind('wo', 'set-cmd-text -s :open -t -- {url:pretty}')
+config.bind('wp', 'open -t -- {clipboard}')
