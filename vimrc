@@ -90,10 +90,11 @@ filetype plugin indent on
 " Display tabs and trailing spaces visually
 set list listchars=tab:\ \ ,trail:·
 
-" Automatically remove trailling whitespaces
-autocmd BufWritePre * :%s/\s\+$//e
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
 
-let b:lion_squeeze_spaces=1
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " ================ Folds ============================
 
@@ -145,7 +146,7 @@ iabbr log console.log("foo");
 " ================ Tests ======================
 
 " make test commands execute using dispatch.vim
-let test#strategy = "dispatch"
+let test#strategy = 'vimux'
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>l :TestLast<CR>
@@ -209,8 +210,20 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
 
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+" Automatically remove trailling whitespaces
+autocmd BufWritePre * :%s/\s\+$//e
+
+" Dash search plugin
+if exists('g:loaded_dash')
+  finish
+endif
+let g:loaded_dash = 1
+
+function! s:Dash(search)
+  exec 'silent !open "dash://' . join(split(a:search), ':') . '"'
+  redraw!
+endfunction
+
+command! -bar -nargs=+ Dash call s:Dash(<q-args>)
+nnoremap dx :Dash <C-R>=&filetype<CR> <cword><CR>

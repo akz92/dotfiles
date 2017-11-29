@@ -9,7 +9,7 @@
 # Aliases for commands. The keys of the given dictionary are the
 # aliases, while the values are the commands they map to.
 # Type: Dict
-c.aliases = {'w': 'session-save', 'q': 'quit', 'wq': 'quit --save', 'gmail': 'open -t https://gmail.com', 'meuPonto': 'open -t http://www.meucontroledeponto.com.br', 'mopidy': 'open -t http://localhost:6680/moped', 'instapaper-add': 'spawn --userscript ~/.config/qutebrowser/instapaper_add', 'load_work': 'session-load work', 'instapaper': 'open -t https://instapaper.com', 'view-in-mpv': 'spawn --userscript ~/.config/qutebrowser/view_in_mpv'}
+c.aliases = {'w': 'session-save', 'q': 'quit', 'wq': 'quit --save', 'gmail': 'open -t https://gmail.com', 'localhostEdools': 'open -t http://demo.edools-dev.com:3000/', 'gmailEdools': 'open -t https://mail.google.com/mail/u/?authuser=lucas@edools.com', 'pipefy': 'open -t https://app.pipefy.com/pipes/263956#', 'mopidy': 'open -t http://localhost:6680/moped', 'instapaper-add': 'spawn --userscript ~/.config/qutebrowser/instapaper_add', 'load_work': 'session-load work', 'instapaper': 'open -t https://instapaper.com', 'view-in-mpv': 'spawn --userscript ~/.config/qutebrowser/view_in_mpv'}
 
 # This setting can be used to map keys to other keys. When the key used
 # as dictionary-key is pressed, the binding for the key used as
@@ -355,10 +355,12 @@ c.window.title_format = '{perc}{title}'
 # Bindings for normal mode
 config.bind(',g', 'gmail')
 config.bind(',i', 'instapaper')
-config.bind(',m', 'meuPonto')
 config.bind(',s', 'mopidy')
 config.bind(';p', 'hint links fill :open -p {hint-url}')
 config.bind('<ctrl+w>', 'close')
+config.bind('<g', 'gmailEdools')
+config.bind('<l', 'localhostEdools')
+config.bind('<p', 'pipefy')
 config.bind('J', 'tab-prev')
 config.bind('K', 'tab-next')
 config.bind('\\d', 'download-delete')

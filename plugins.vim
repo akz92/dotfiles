@@ -3,13 +3,14 @@ call plug#begin('~/.vim/bundle')
 " Manipulate files
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle'   }
 Plug 'tpope/vim-surround'
-Plug 'francoiscabrol/ranger.vim', { 'on': 'Ranger' }
+Plug 'francoiscabrol/ranger.vim'
 
 " Search files
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Completion
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'Shougo/neocomplete.vim'
 Plug 'Valloric/MatchTagAlways'
 Plug 'jiangmiao/auto-pairs'
@@ -36,6 +37,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 " Test
+Plug 'benmills/vimux'
 Plug 'janko-m/vim-test', { 'on': ['TestNearest', 'TestFile', 'TestLast'] }
 
 " Misc

@@ -4,18 +4,17 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 bindkey '^ ' autosuggest-accept
 
 source ~/.secrets
+source ~/.env
 
 alias vim=$EDITOR
-alias zshrc="vim ~/.zshrc"
-alias vimrc="vim ~/.vimrc"
-alias vimplug="vim ~/.vim/plugins.vim"
+alias git=hub
 alias vimpi="vim +PlugInstall"
 alias vimpc="vim +PlugClean"
 alias vimpu="vim +PlugUpdate"
 alias dev="cd ~/dev"
 alias rr="bundle exec rake routes"
 alias rrf="bundle exec rake routes | fzf"
-alias rs="bundle exec rails s"
+alias rs="bundle exec rails s -b 127.0.0.1"
 alias rc="bundle exec rails c"
 alias rdc="bundle exec rake db:create"
 alias rdd="bundle exec rake db:drop"
@@ -40,24 +39,27 @@ alias hbd="heroku pg:backups:download"
 alias ionpi="ionic prepare ios"
 alias termtypist="python ~/dev/termtypist/termtypist.py"
 alias notes="vim ~/Dropbox/Writer/Notes.md"
-alias tmuxrc="vim ~/.tmux.conf"
-alias kittyrc="vim $DOTFILES_PATH/kitty.conf"
-alias chunkwmrc="vim $DOTFILES_PATH/chunkwmrc"
-alias skhdrc="vim $DOTFILES_PATH/skhdrc"
 alias weather="curl wttr.in/campos_dos_goitacazes"
 alias ctags="`brew --prefix`/bin/ctags"
 alias fixpsql="rm /usr/local/var/postgres/postmaster.pid && brew services restart postgresql"
 alias qutebrowser="open -a /Applications/qutebrowser.app --args --enable-webengine-inspector"
 alias wira="awc && ira"
 alias bws="brew search | fzf"
+# alias ionic="docker run -ti --rm --net host --privileged --name \${PWD##*/} -v ~/.gradle:/root/.gradle -v \$PWD:/myApp:rw agileek/ionic-framework ionic"
+alias ionic-container="docker run -ti --rm --net host --name \${PWD##*/} --privileged -v \$PWD:/myApp:rw agileek/ionic-framework bash"
 if [ -n "$TMUX" ]; then alias fzf="fzf-tmux"; fi
 
 export PATH=$PATH:/Users/akz/Library/Android/sdk/platform-tools
-export VISUAL=/usr/local/Cellar/macvim/8.0-141/MacVim.app/Contents/MacOS/Vim
+export VISUAL=/usr/local/Cellar/macvim/8.0-142/MacVim.app/Contents/MacOS/Vim
 export EDITOR="$VISUAL"
 export DOTFILES_PATH="$HOME/dev/dotfiles"
-# export ANDROID_HOME="/Users/akz/Library/Android/sdk"
-# export ANDROID_NDK="/usr/local/opt/android-ndk/android-ndk-r14b"
+
+export JAVA_HOME="$(/usr/libexec/java_home)"
+export ANT_HOME=/usr/local/opt/ant
+export MAVEN_HOME=/usr/local/opt/maven
+export GRADLE_HOME=/usr/local/opt/gradle
+export ANDROID_HOME=/usr/local/share/android-sdk
+export ANDROID_NDK_HOME=/usr/local/share/android-ndk
 
 # Setting rg as the default source for fzf
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
