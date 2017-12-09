@@ -35,6 +35,7 @@ Plug 'joshdick/onedark.vim'
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-rhubarb'
 
 " Test
 Plug 'benmills/vimux'

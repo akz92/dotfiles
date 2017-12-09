@@ -46,6 +46,12 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
+if empty(glob('~/.vim/plugins.vim'))
+  silent !curl -fLo ~/.vim/plugins.vim --create-dirs
+    \ https://raw.githubusercontent.com/akz92/dotfiles/master/plugins.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
 " This loads all the plugins specified in ~/.vim/plugins.vim
 if filereadable(expand("~/.vim/plugins.vim"))
   source ~/.vim/plugins.vim
@@ -53,7 +59,9 @@ endif
 
 " =============== Theme ===============
 
-set termguicolors
+if has('termguicolors')
+  set termguicolors
+endif
 set background=dark
 colorscheme onedark
 

@@ -44,7 +44,7 @@ alias ctags="`brew --prefix`/bin/ctags"
 alias fixpsql="rm /usr/local/var/postgres/postmaster.pid && brew services restart postgresql"
 alias qutebrowser="open -a /Applications/qutebrowser.app --args --enable-webengine-inspector"
 alias wira="awc && ira"
-alias bws="brew search | fzf"
+alias bsf="brew search | fzf"
 # alias ionic="docker run -ti --rm --net host --privileged --name \${PWD##*/} -v ~/.gradle:/root/.gradle -v \$PWD:/myApp:rw agileek/ionic-framework ionic"
 alias ionic-container="docker run -ti --rm --net host --name \${PWD##*/} --privileged -v \$PWD:/myApp:rw agileek/ionic-framework bash"
 if [ -n "$TMUX" ]; then alias fzf="fzf-tmux"; fi
@@ -99,6 +99,10 @@ function apps {
 
 function dt {
   $EDITOR "$DOTFILES_PATH/$(ls $DOTFILES_PATH | fzf)"
+}
+
+function ms {
+  meteor --settings deploy/${1:-local}/settings.json
 }
 
 ## Command history configuration

@@ -1,6 +1,6 @@
 # open applications
 cmd + alt + ctrl + shift - t : open /Applications/Kitty.app
-cmd + alt + ctrl + shift - b : open /Applications/qutebrowser.app
+cmd + alt + ctrl + shift - b : open /Applications/Firefox.app
 cmd + alt + ctrl + shift - m : open /Applications/Franz.app
 
 # control mpc music
