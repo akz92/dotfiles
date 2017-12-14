@@ -17,6 +17,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-endwise'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
+Plug 'alvan/vim-closetag'
 
 " Status
 Plug 'itchyny/lightline.vim'
@@ -47,5 +48,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'brooth/far.vim', { 'on': 'Farp' }
 Plug 'wellle/targets.vim'
 Plug 'akz92/vim-angular2', { 'on': ['Angular2Controller', 'Angular2Html', 'Angular2Layout'] }
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
