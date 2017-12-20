@@ -1,11 +1,10 @@
 # open applications
 cmd + alt + ctrl + shift - t : open /Applications/Kitty.app
 cmd + alt + ctrl + shift - b : open /Applications/Safari.app
-cmd + alt + ctrl + shift - m : open /Applications/Franz.app
-cmd + alt + ctrl + shift - w : open /Applications/Station.app
+cmd + alt + ctrl + shift - s : open /Applications/Slack.app
 
 # control mpc music
-alt - s : mpc toggle
+# alt - s : mpc toggle
 # alt - n : mpc next
 # alt - p : mpc previous
 

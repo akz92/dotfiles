@@ -6,12 +6,29 @@ bindkey '^ ' autosuggest-accept
 source ~/.secrets
 source ~/.env
 
-alias vim=$EDITOR
 alias git=hub
+alias ctags="`brew --prefix`/bin/ctags"
+alias dev="cd ~/dev"
+alias sz="source ~/.zshrc"
+alias zlt="/usr/bin/time zsh -i -c exit"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias ionpi="ionic prepare ios"
+alias fixpsql="rm /usr/local/var/postgres/postmaster.pid && brew services restart postgresql"
+alias qutebrowser="open -a /Applications/qutebrowser.app --args --enable-webengine-inspector"
+alias wira="awc && ira"
+# alias ionic="docker run -ti --rm --net host --privileged --name \${PWD##*/} -v ~/.gradle:/root/.gradle -v \$PWD:/myApp:rw agileek/ionic-framework ionic"
+# alias ionic-container="docker run -ti --rm --net host --name \${PWD##*/} --privileged -v \$PWD:/myApp:rw agileek/ionic-framework bash"
+if [ -n "$TMUX" ]; then alias fzf="fzf-tmux"; fi
+
+# Vim aliases
+alias vim=$EDITOR
 alias vimpi="vim +PlugInstall"
 alias vimpc="vim +PlugClean"
 alias vimpu="vim +PlugUpdate"
-alias dev="cd ~/dev"
+
+# Rails aliases
 alias rr="bundle exec rake routes"
 alias rrf="bundle exec rake routes | fzf"
 alias rs="bundle exec rails s -b 127.0.0.1"
@@ -24,11 +41,8 @@ alias rdsl="bundle exec rake db:schema:load"
 alias rdr="rdsl && rds"
 alias rgmi="rails g migration"
 alias rgmo="rails g model"
-alias sz="source ~/.zshrc"
-alias zlt="/usr/bin/time zsh -i -c exit"
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
+
+# Heroku aliases
 alias hrc="heroku run bundle exec rails c"
 alias hrdm="heroku run bundle exec rake db:migrate"
 alias hrds="heroku run bundle exec rake db:seed"
@@ -36,18 +50,6 @@ alias hrdsl="heroku run bundle exec rake db:schema:load"
 alias hl="heroku logs -t"
 alias hbc="heroku pg:backups:capture"
 alias hbd="heroku pg:backups:download"
-alias ionpi="ionic prepare ios"
-alias termtypist="python ~/dev/termtypist/termtypist.py"
-alias notes="vim ~/Dropbox/Writer/Notes.md"
-alias weather="curl wttr.in/campos_dos_goitacazes"
-alias ctags="`brew --prefix`/bin/ctags"
-alias fixpsql="rm /usr/local/var/postgres/postmaster.pid && brew services restart postgresql"
-alias qutebrowser="open -a /Applications/qutebrowser.app --args --enable-webengine-inspector"
-alias wira="awc && ira"
-alias bsf="brew search | fzf"
-# alias ionic="docker run -ti --rm --net host --privileged --name \${PWD##*/} -v ~/.gradle:/root/.gradle -v \$PWD:/myApp:rw agileek/ionic-framework ionic"
-alias ionic-container="docker run -ti --rm --net host --name \${PWD##*/} --privileged -v \$PWD:/myApp:rw agileek/ionic-framework bash"
-if [ -n "$TMUX" ]; then alias fzf="fzf-tmux"; fi
 
 export PATH=$PATH:/Users/akz/Library/Android/sdk/platform-tools
 export VISUAL=/usr/local/Cellar/macvim/8.0-143/MacVim.app/Contents/MacOS/Vim
@@ -79,6 +81,7 @@ if ! [[ $(zplugin list) ]]; then
   zplugin light zsh-users/zsh-autosuggestions
   zplugin light zsh-users/zsh-syntax-highlighting
   zplugin light hlissner/zsh-autopair
+  zplugin light mfaerevaag/wd
   zplugin light akz92/clean
   zplugin light akz92/ion-zsh
   zplugin light lukechilds/zsh-nvm
@@ -121,3 +124,4 @@ setopt inc_append_history
 setopt share_history # share command history data
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/usr/local/opt/ffmpeg@2.8/bin:$PATH"
