@@ -43,11 +43,12 @@ Plug 'benmills/vimux'
 Plug 'janko-m/vim-test', { 'on': ['TestNearest', 'TestFile', 'TestLast'] }
 
 " Misc
-Plug 'tpope/vim-commentary'
+Plug 'tomtom/tcomment_vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'brooth/far.vim', { 'on': 'Farp' }
 Plug 'wellle/targets.vim'
 Plug 'akz92/vim-angular2', { 'on': ['Angular2Controller', 'Angular2Html', 'Angular2Layout'] }
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()

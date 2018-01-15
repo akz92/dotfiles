@@ -219,6 +219,8 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
 " Automatically remove trailling whitespaces
 autocmd BufWritePre * :%s/\s\+$//e
 

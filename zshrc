@@ -5,54 +5,11 @@ bindkey '^ ' autosuggest-accept
 
 source ~/.secrets
 source ~/.env
-
-alias git=hub
-alias ctags="`brew --prefix`/bin/ctags"
-alias dev="cd ~/dev"
-alias sz="source ~/.zshrc"
-alias zlt="/usr/bin/time zsh -i -c exit"
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias ionpi="ionic prepare ios"
-alias fixpsql="rm /usr/local/var/postgres/postmaster.pid && brew services restart postgresql"
-alias qutebrowser="open -a /Applications/qutebrowser.app --args --enable-webengine-inspector"
-alias wira="awc && ira"
-# alias ionic="docker run -ti --rm --net host --privileged --name \${PWD##*/} -v ~/.gradle:/root/.gradle -v \$PWD:/myApp:rw agileek/ionic-framework ionic"
-# alias ionic-container="docker run -ti --rm --net host --name \${PWD##*/} --privileged -v \$PWD:/myApp:rw agileek/ionic-framework bash"
-if [ -n "$TMUX" ]; then alias fzf="fzf-tmux"; fi
-
-# Vim aliases
-alias vim=$EDITOR
-alias vimpi="vim +PlugInstall"
-alias vimpc="vim +PlugClean"
-alias vimpu="vim +PlugUpdate"
-
-# Rails aliases
-alias rr="bundle exec rake routes"
-alias rrf="bundle exec rake routes | fzf"
-alias rs="bundle exec rails s -b 127.0.0.1"
-alias rc="bundle exec rails c"
-alias rdc="bundle exec rake db:create"
-alias rdd="bundle exec rake db:drop"
-alias rdm="bundle exec rake db:migrate"
-alias rds="bundle exec rake db:seed"
-alias rdsl="bundle exec rake db:schema:load"
-alias rdr="rdsl && rds"
-alias rgmi="rails g migration"
-alias rgmo="rails g model"
-
-# Heroku aliases
-alias hrc="heroku run bundle exec rails c"
-alias hrdm="heroku run bundle exec rake db:migrate"
-alias hrds="heroku run bundle exec rake db:seed"
-alias hrdsl="heroku run bundle exec rake db:schema:load"
-alias hl="heroku logs -t"
-alias hbc="heroku pg:backups:capture"
-alias hbd="heroku pg:backups:download"
+source ~/.zsh/aliases.zsh
+source ~/.zsh/edools.zsh
 
 export PATH=$PATH:/Users/akz/Library/Android/sdk/platform-tools
-export VISUAL=/usr/local/Cellar/macvim/8.0-143/MacVim.app/Contents/MacOS/Vim
+export VISUAL=/usr/local/Cellar/macvim/8.0-144/MacVim.app/Contents/MacOS/Vim
 export EDITOR="$VISUAL"
 export DOTFILES_PATH="$HOME/dev/dotfiles"
 
@@ -81,7 +38,6 @@ if ! [[ $(zplugin list) ]]; then
   zplugin light zsh-users/zsh-autosuggestions
   zplugin light zsh-users/zsh-syntax-highlighting
   zplugin light hlissner/zsh-autopair
-  zplugin light mfaerevaag/wd
   zplugin light akz92/clean
   zplugin light akz92/ion-zsh
   zplugin light lukechilds/zsh-nvm
@@ -94,6 +50,10 @@ function gphm {
 
 function vmi {
   $EDITOR $(ls -td db/migrate/* | head -1)
+}
+
+function gcof {
+  git checkout $(git branch | fzf)
 }
 
 function apps {
