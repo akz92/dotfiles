@@ -16,6 +16,7 @@ set cursorline                  " Highlight current line
 set colorcolumn=80              " Display a vertical line on the 80th line
 set guifont=Monaco:h14
 set timeoutlen=1000 ttimeoutlen=0
+set synmaxcol=300               " Limit syntax highlight to improve performance
 
 " This makes vim act like all other editors, buffers can exist in the background without being in a window.
 set hidden

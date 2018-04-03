@@ -1,9 +1,10 @@
 # open applications
-cmd + alt + ctrl + shift - t : open /Applications/Kitty.app
-cmd + alt + ctrl + shift - b : open /Applications/Safari.app
+cmd + alt + ctrl + shift - t : open /Applications/kitty.app
+cmd + alt + ctrl + shift - b : open /Applications/Bim.app
 cmd + alt + ctrl + shift - s : open /Applications/Slack.app
 cmd + alt + ctrl + shift - m : open /Applications/Spark.app
 cmd + alt + ctrl + shift - p : open /Applications/Pipefy.app
+cmd + alt + ctrl + shift - n : open /Applications/Typora.app
 
 # control mpc music
 # alt - s : mpc toggle
@@ -11,14 +12,14 @@ cmd + alt + ctrl + shift - p : open /Applications/Pipefy.app
 # alt - p : mpc previous
 
 # move floating windows / windows on a floating space
-cmd + ctrl - m       : chunkc tiling::window --warp-floating fullscreen
-cmd + ctrl - left  : chunkc tiling::window --warp-floating left
-cmd + ctrl - right : chunkc tiling::window --warp-floating right
-shift + cmd - left   : chunkc tiling::window --warp-floating top-left
-shift + cmd - right  : chunkc tiling::window --warp-floating top-right
-shift + ctrl - left  : chunkc tiling::window --warp-floating bottom-left
-shift + ctrl - right : chunkc tiling::window --warp-floating bottom-right
+# cmd + ctrl - m       : chunkc tiling::window --grid-layout 1:1:0:0:1:1
+# cmd + ctrl - left  : chunkc tiling::window --grid-layout 1:2:0:0:1:1
+# cmd + ctrl - right : chunkc tiling::window --grid-layout 1:2:1:0:1:1
+# shift + cmd - left   : chunkc tiling::window --warp-floating top-left
+# shift + cmd - right  : chunkc tiling::window --warp-floating top-right
+# shift + ctrl - left  : chunkc tiling::window --warp-floating bottom-left
+# shift + ctrl - right : chunkc tiling::window --warp-floating bottom-right
 
 # send window to monitor and follow focus
-cmd + ctrl - p : chunkc tiling::window --send-to-monitor prev; chunkc tiling::monitor -f prev
-cmd + ctrl - n : chunkc tiling::window --send-to-monitor next; chunkc tiling::monitor -f next
+# cmd + ctrl - p : chunkc tiling::window --send-to-monitor prev; chunkc tiling::monitor -f prev
+# cmd + ctrl - n : chunkc tiling::window --send-to-monitor next; chunkc tiling::monitor -f next

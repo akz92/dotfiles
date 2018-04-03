@@ -9,7 +9,7 @@ source ~/.zsh/aliases.zsh
 source ~/.zsh/edools.zsh
 
 export PATH=$PATH:/Users/akz/Library/Android/sdk/platform-tools
-export VISUAL=/usr/local/Cellar/macvim/8.0-144/MacVim.app/Contents/MacOS/Vim
+export VISUAL=/usr/local/Cellar/macvim/8.0-145_2/MacVim.app/Contents/MacOS/Vim
 export EDITOR="$VISUAL"
 export DOTFILES_PATH="$HOME/dev/dotfiles"
 
@@ -21,7 +21,7 @@ export ANDROID_HOME=/usr/local/share/android-sdk
 export ANDROID_NDK_HOME=/usr/local/share/android-ndk
 
 # Setting rg as the default source for fzf
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!spec/cassettes/*" --glob "!test/cassettes/*" --glob "!tmp/*" --glob "!spec/fixtures/vcr_cassettes/*"'
 
 # To apply the command to CTRL-T as well
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -85,3 +85,5 @@ setopt share_history # share command history data
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/usr/local/opt/ffmpeg@2.8/bin:$PATH"
+export PATH="/usr/local/opt/postgresql@9.5/bin:$PATH"
+export PATH="/usr/local/opt/qt/bin:$PATH"
