@@ -9,7 +9,7 @@ source ~/.zsh/aliases.zsh
 source ~/.zsh/edools.zsh
 
 export PATH=$PATH:/Users/akz/Library/Android/sdk/platform-tools
-export VISUAL=/usr/local/Cellar/macvim/8.0-145_2/MacVim.app/Contents/MacOS/Vim
+export VISUAL=/usr/local/Cellar/macvim/8.1-149_1/MacVim.app/Contents/MacOS/Vim
 export EDITOR="$VISUAL"
 export DOTFILES_PATH="$HOME/dev/dotfiles"
 
@@ -41,6 +41,7 @@ if ! [[ $(zplugin list) ]]; then
   zplugin light akz92/clean
   zplugin light akz92/ion-zsh
   zplugin light lukechilds/zsh-nvm
+  zplugin light b4b4r07/zsh-vimode-visual
   zplugin snippet OMZ::plugins/git/git.plugin.zsh
 fi
 

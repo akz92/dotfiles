@@ -22,6 +22,7 @@ Plug 'alvan/vim-closetag'
 
 " Status
 Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'
 
 " Lint
 Plug 'w0rp/ale'
