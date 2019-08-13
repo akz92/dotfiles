@@ -22,7 +22,6 @@ Plug 'alvan/vim-closetag'
 
 " Status
 Plug 'itchyny/lightline.vim'
-Plug 'maximbaz/lightline-ale'
 
 " Lint
 Plug 'w0rp/ale'
@@ -31,6 +30,7 @@ Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 Plug 'akz92/vim-ionic2'
 Plug 'posva/vim-vue'
+Plug 'chrisbra/Colorizer'
 " Plug '~/dev/ionic2-syntax.vim'
 
 " Color themes
@@ -50,7 +50,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'brooth/far.vim', { 'on': 'Farp' }
 Plug 'wellle/targets.vim'
-Plug 'akz92/vim-angular2', { 'on': ['Angular2Controller', 'Angular2Html', 'Angular2Layout'] }
+" Plug 'akz92/vim-angular2', { 'on': ['Angular2Controller', 'Angular2Html', 'Angular2Layout'] }
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
 
