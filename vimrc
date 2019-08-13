@@ -17,6 +17,7 @@ set colorcolumn=80              " Display a vertical line on the 80th line
 set guifont=Monaco:h14
 set timeoutlen=1000 ttimeoutlen=0
 set synmaxcol=300               " Limit syntax highlight to improve performance
+set backspace=indent,eol,start
 
 " This makes vim act like all other editors, buffers can exist in the background without being in a window.
 set hidden
@@ -80,7 +81,7 @@ set nowb
 
 " Keep undo history across sessions, by storing in file.
 
-" call system('mkdir ~/.vim/undo')
+call system('mkdir ~/.vim/undo')
 set undofile
 set undodir=~/.vim/undo
 
@@ -148,9 +149,10 @@ nmap <leader>bq :bp <BAR> bd #<cr>
 
 " ================ Abbreviations ======================
 
-iabbr pry binding.pry
+iabbr bpry binding.pry
+iabbr rbpry binding.remote_pry
 iabbr dbg debugger;
-iabbr log console.log("foo");
+iabbr clog console.log('foo');
 
 " ================ Tests ======================
 
@@ -223,7 +225,15 @@ let g:html_indent_tags = 'li\|p'
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 " Automatically remove trailling whitespaces
-autocmd BufWritePre * :%s/\s\+$//e
+fun! StripTrailingWhitespace()
+    " Don't strip on these filetypes
+    if &ft =~ 'yaml'
+        return
+    endif
+    %s/\s\+$//e
+endfun
+
+autocmd BufWritePre * call StripTrailingWhitespace()
 
 " Dash search plugin
 if exists('g:loaded_dash')
@@ -238,3 +248,9 @@ endfunction
 
 command! -bar -nargs=+ Dash call s:Dash(<q-args>)
 nnoremap dx :Dash <C-R>=&filetype<CR> <cword><CR>
+
+" Set syntax for inky-haml
+augroup twig_ft
+  au!
+  autocmd BufNewFile,BufRead *.inky-haml set syntax=haml
+augroup END
