@@ -1,4 +1,5 @@
 *.swp
+.eslintrc.json
 database.yml
 .DS_Store
 tags
