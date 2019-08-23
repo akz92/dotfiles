@@ -19,6 +19,7 @@ alias vimpc="vim +PlugClean"
 alias vimpu="vim +PlugUpdate"
 
 # Rails aliases
+alias be="bundle exec"
 alias rr="bundle exec rake routes"
 alias rrf="bundle exec rake routes | fzf"
 alias rs="bundle exec rails s -b 127.0.0.1"
@@ -31,6 +32,8 @@ alias rdsl="bundle exec rake db:schema:load"
 alias rdr="rdsl && rds"
 alias rgmi="rails g migration"
 alias rgmo="rails g model"
+alias fs="foreman start"
+alias prod="be cap production deploy && sh bin/bump-version && sh bin/sync-master"
 
 # Heroku aliases
 alias hrc="heroku run bundle exec rails c"

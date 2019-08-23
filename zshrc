@@ -6,28 +6,24 @@ bindkey '^ ' autosuggest-accept
 # source ~/.secrets
 # source ~/.env
 source ~/.zsh/aliases.zsh
-# source ~/.zsh/edools.zsh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
 export PGHOST=localhost
-export VISUAL=/usr/local/Cellar/vim/8.1.1800/bin/vim
+export VISUAL=/usr/local/Cellar/vim/8.1.1850/bin/vim
 export EDITOR="$VISUAL"
 export DOTFILES_PATH="$HOME/dev/dotfiles"
 export HOMEBREW_GITHUB_API_TOKEN=9b71eae3e30109f1bac3e9aef965d00a37242a85
 
-export ANDROID_HOME="${HOME}/Library/Android/sdk"
-export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
-export PATH="${HOME}/Library/Android/sdk/tools:${HOME}/Library/Android/sdk/platform-tools:${JAVA_HOME}/bin:${PATH}"
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
+export PATH="$JAVA_HOME/bin:$PATH"
+export PATH="/Applications/Android Studio.app/Contents/gradle/gradle-5.1.1/bin:$PATH"
+export PATH="$HOME/Library/Android/sdk/tools/bin:$PATH"
+export PATH="$HOME/Library/Android/sdk/tools:$PATH"
 
 export ANSIBLE_VAULT_PASSWORD_FILE=.vault_pass
-# export ANT_HOME=/usr/local/opt/ant
-# export MAVEN_HOME=/usr/local/opt/maven
-# export GRADLE_HOME=/usr/local/opt/gradle
-# export ANDROID_HOME=/usr/local/share/android-sdk
-# export ANDROID_NDK_HOME=/usr/local/share/android-ndk
 
 # Setting rg as the default source for fzf
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!spec/cassettes/*" --glob "!test/cassettes/*" --glob "!tmp/*" --glob "!spec/fixtures/vcr_cassettes/*"'
@@ -36,7 +32,7 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 ### Added by Zplugin's installer
-source '/Users/akz/.zplugin/bin/zplugin.zsh'
+source "$HOME/.zplugin/bin/zplugin.zsh"
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 ### End of Zplugin's installer chunk
@@ -91,7 +87,6 @@ setopt share_history # share command history data
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/usr/local/opt/ffmpeg@2.8/bin:$PATH"
-export PATH="/usr/local/opt/qt/bin:$PATH"
-
-source ~/.bash_profile
+export PATH="/usr/local/opt/qt@5.5/5.5.1.1/bin:$PATH"
+export PATH="/usr/local/opt/qt@5.5/5.5.1.1/bin/qmake:$PATH"
 ssh-add
