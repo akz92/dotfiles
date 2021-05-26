@@ -164,12 +164,12 @@ nmap <silent> <leader>l :TestLast<CR>
 
 " ================ UltiSnips ======================
 
-let g:UltiSnipsEditSplit = 'horizontal'
-let g:UltiSnipsListSnippets = '<nop>'
-let g:UltiSnipsExpandTrigger = '<c-l>'
-let g:UltiSnipsJumpForwardTrigger = '<c-l>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-b>'
-let g:ulti_expand_or_jump_res = 0
+" let g:UltiSnipsEditSplit = 'horizontal'
+" let g:UltiSnipsListSnippets = '<nop>'
+" let g:UltiSnipsExpandTrigger = '<c-l>'
+" let g:UltiSnipsJumpForwardTrigger = '<c-l>'
+" let g:UltiSnipsJumpBackwardTrigger = '<c-b>'
+" let g:ulti_expand_or_jump_res = 0
 
 " ================ Text Objects ================
 
@@ -183,26 +183,37 @@ endfor
 " ================ Auto Complete ==============
 
 " Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
+" let g:acp_enableAtStartup = 0
 " Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
+" let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
-let g:neocomplete#enable_smart_case = 1
+" let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
 
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory='~/.vim/snippets/'
+" let g:neosnippet#enable_snipmate_compatibility = 1
+" let g:neosnippet#snippets_directory='~/.vim/snippets/'
+
+" :lua << END
+"   require'nvim_lsp'.solargraph.setup{}
+" END
+
+" let g:deoplete#enable_at_startup = 1
+" set omnifunc=lsp#omnifunc
+
+" nnoremap <silent>gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+" nnoremap <silent><c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+" nnoremap <silent>K     <cmd>lua vim.lsp.buf.hover()<CR>
 
 " ================ Lint =======================
 
@@ -212,7 +223,17 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
 \   'html': [],
+\   'ruby': ['rubocop']
 \}
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'ruby': ['rubocop'],
+\   'scss': ['prettier'],
+\   'css': ['prettier']
+\}
+let g:ale_fix_on_save = 1
+let g:ale_ruby_rubocop_executable = 'bundle'
+let g:ale_ruby_rubocop_options = '--safe-auto-correct --force-exclusion'
 
 " ================ Others ======================
 
@@ -236,18 +257,18 @@ endfun
 autocmd BufWritePre * call StripTrailingWhitespace()
 
 " Dash search plugin
-if exists('g:loaded_dash')
-  finish
-endif
-let g:loaded_dash = 1
-
-function! s:Dash(search)
-  exec 'silent !open "dash://' . join(split(a:search), ':') . '"'
-  redraw!
-endfunction
-
-command! -bar -nargs=+ Dash call s:Dash(<q-args>)
-nnoremap dx :Dash <C-R>=&filetype<CR> <cword><CR>
+" if exists('g:loaded_dash')
+"   finish
+" endif
+" let g:loaded_dash = 1
+"
+" function! s:Dash(search)
+"   exec 'silent !open "dash://' . join(split(a:search), ':') . '"'
+"   redraw!
+" endfunction
+"
+" command! -bar -nargs=+ Dash call s:Dash(<q-args>)
+" nnoremap dx :Dash <C-R>=&filetype<CR> <cword><CR>
 
 " Set syntax for inky-haml
 augroup twig_ft
