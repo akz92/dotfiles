@@ -4,3 +4,6 @@ database.yml
 .DS_Store
 tags
 tags.*
+Procfile.local
+*.dump
+*.dump.*

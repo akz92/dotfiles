@@ -12,7 +12,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
 export PGHOST=localhost
-export VISUAL=/usr/local/Cellar/vim/8.2.2875_1/bin/vim
+export VISUAL=/usr/local/Cellar/vim/8.2.3550/bin/vim
 export EDITOR="$VISUAL"
 export DOTFILES_PATH="$HOME/dev/dotfiles"
 export HOMEBREW_GITHUB_API_TOKEN=9b71eae3e30109f1bac3e9aef965d00a37242a85

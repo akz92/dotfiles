@@ -10,6 +10,7 @@ alias ionpi="ionic prepare ios"
 alias fixpsql="rm /usr/local/var/postgres/postmaster.pid && brew services restart postgresql"
 alias qutebrowser="open -a /Applications/qutebrowser.app --args --enable-webengine-inspector"
 alias wira="awc && ira"
+alias wk="tmuxinator start work"
 if [ -n "$TMUX" ]; then alias fzf="fzf-tmux"; fi
 
 # Vim aliases
@@ -30,9 +31,10 @@ alias rdm="bundle exec rake db:migrate"
 alias rds="bundle exec rake db:seed"
 alias rdsl="bundle exec rake db:schema:load"
 alias rdr="rdsl && rds"
-alias rgmi="rails g migration"
-alias rgmo="rails g model"
+alias rgmi="bundle exec rails g migration"
+alias rgmo="bundle exec rails g model"
 alias fs="foreman start"
+alias fsl="bundle exec foreman start -f Procfile.local"
 alias prod="be cap production deploy && sh bin/bump-version && sh bin/sync-master"
 
 # Heroku aliases
