@@ -21,6 +21,8 @@ brew "ncurses"
 brew "tig"
 brew "tmuxinator"
 brew "v8"
+brew "ag"
+brew "fzf"
 # QMK compilation
 # brew "osx-cross/avr/avr-gcc"
 
@@ -44,7 +46,7 @@ brew "koekeishiya/formulae/skhd"
 # brew "mpc"
 
 # Applications
-tap "caskroom/cask"
+tap "homebrew/cask"
 # cask "airflow"
 # cask "android-file-transfer"
 # cask "bitbar"
@@ -98,4 +100,4 @@ cask "stats"
 # mas "Noizio", id: 928871589
 # mas "Pages", id: 409201541
 # mas "Skitch", id: 425955336
-mas "Xcode", id: 497799835
+# mas "Xcode", id: 497799835
