@@ -22,7 +22,7 @@ alias vimpu="vim +PlugUpdate"
 # Rails aliases
 alias be="bundle exec"
 alias rr="bundle exec rake routes"
-alias rrf="bundle exec rake routes | fzf"
+alias rrf="bundle exec rails routes | fzf"
 alias rs="bundle exec rails s -b 127.0.0.1"
 alias rc="bundle exec rails c"
 alias rdc="bundle exec rake db:create"
