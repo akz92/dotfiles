@@ -12,18 +12,17 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
 export PGHOST=localhost
-export VISUAL=/usr/local/Cellar/vim/8.2.3550/bin/vim
+export VISUAL=/usr/local/Cellar/vim/8.2.4150/bin/vim
 export EDITOR="$VISUAL"
 export DOTFILES_PATH="$HOME/dev/dotfiles"
-export HOMEBREW_GITHUB_API_TOKEN=9b71eae3e30109f1bac3e9aef965d00a37242a85
 
 # export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
 # export PATH="$JAVA_HOME/bin:$PATH"
 # export PATH="/Applications/Android Studio.app/Contents/gradle/gradle-5.1.1/bin:$PATH"
 # export PATH="$HOME/Library/Android/sdk/tools/bin:$PATH"
 # export PATH="$HOME/Library/Android/sdk/tools:$PATH"
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+# export PATH="$HOME/.jenv/bin:$PATH"
+# eval "$(jenv init -)"
 
 export ANSIBLE_VAULT_PASSWORD_FILE=.vault_pass
 
