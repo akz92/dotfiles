@@ -1,4 +1,5 @@
 export PATH="/usr/local/opt/postgresql@9.5/bin:$PATH"
+export PATH="/usr/local/opt/postgresql@9.5/bin:$PATH"
 eval "$(rbenv init -)"
 setopt auto_cd
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
@@ -12,9 +13,15 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
 export PGHOST=localhost
-export VISUAL=/usr/local/Cellar/vim/8.2.4150/bin/vim
+export VISUAL=/usr/local/Cellar/vim/8.2.5000/bin/vim
 export EDITOR="$VISUAL"
 export DOTFILES_PATH="$HOME/dev/dotfiles"
+export GEM_HOME=~/.gem
+export GEM_PATH=~/.gem
+
+# CBS
+export CBS_HOME="/Users/lucasmoulin/dev/cbs/cbstrials"
+alias cbs="cd \$CBS_HOME && ./cbs.sh"
 
 # export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
 # export PATH="$JAVA_HOME/bin:$PATH"
@@ -57,6 +64,10 @@ function vmi {
 
 function gcof {
   git checkout $(git branch | fzf)
+}
+
+function gcod {
+  git checkout $(basename $(git symbolic-ref --short refs/remotes/origin/HEAD))
 }
 
 function apps {
