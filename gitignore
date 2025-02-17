@@ -7,3 +7,4 @@ tags.*
 Procfile.local
 *.dump
 *.dump.*
+doc/
