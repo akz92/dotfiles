@@ -101,3 +101,7 @@ cask "stats"
 # mas "Pages", id: 409201541
 # mas "Skitch", id: 425955336
 # mas "Xcode", id: 497799835
+
+# Manual
+# Raycast
+# OrbStack
