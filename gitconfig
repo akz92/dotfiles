@@ -1,0 +1,9 @@
+[core]
+	excludesfile = /Users/lucasmoulin/.gitignore
+[user]
+	email = lucas@moulin.dev
+	name = Lucas Moulin
+[push]
+	autoSetupRemote = true
+[pull]
+	rebase = true
