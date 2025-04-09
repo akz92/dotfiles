@@ -1,6 +1,6 @@
 export PATH="/usr/local/opt/postgresql@9.5/bin:$PATH"
 export PATH="/usr/local/opt/postgresql@9.5/bin:$PATH"
-eval "$(rbenv init -)"
+# eval "$(mise activate zsh)"
 setopt auto_cd
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 bindkey '^ ' autosuggest-accept
@@ -13,15 +13,18 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
 export PGHOST=localhost
-export VISUAL=/usr/local/Cellar/vim/8.2.5000/bin/vim
+# export VISUAL=/usr/local/Cellar/vim/9.0.0300/bin/vim
+export VISUAL=nvim
 export EDITOR="$VISUAL"
 export DOTFILES_PATH="$HOME/dev/dotfiles"
 export GEM_HOME=~/.gem
 export GEM_PATH=~/.gem
+export HOMEBREW_GITHUB_API_TOKEN=9b71eae3e30109f1bac3e9aef965d00a37242a85
 
 # CBS
-export CBS_HOME="/Users/lucasmoulin/dev/cbs/cbstrials"
+export CBS_HOME="/Users/lucasmoulin/dev/projects/cbstrials"
 alias cbs="cd \$CBS_HOME && ./cbs.sh"
+alias bat=batcat
 
 # export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
 # export PATH="$JAVA_HOME/bin:$PATH"
@@ -38,6 +41,10 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 
 # To apply the command to CTRL-T as well
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
+export PATH="$(npm config get prefix)/bin:$PATH"
 
 ### Added by Zplugin's installer
 source "$HOME/.zplugin/bin/zplugin.zsh"
@@ -103,3 +110,11 @@ export PATH="/usr/local/opt/qt@5.5/5.5.1.1/bin:$PATH"
 export PATH="/usr/local/opt/qt@5.5/5.5.1.1/bin/qmake:$PATH"
 
 ssh-add 2>/dev/null
+# alias start-docker="~/docker-vm/vftool/build/vftool -k ~/docker-vm/kernel -i ~/docker-vm/initrd -d ~/docker-vm/disk.img -m 4096 -a \"root=/dev/vda console=hvc0\" -t 0"
+
+export PATH="/usr/local/opt/mysql-client@8.0/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/mysql-client@8.0/lib"
+export CPPFLAGS="-I/usr/local/opt/mysql-client@8.0/include"
+
+export PATH="$HOME/.local/bin:$PATH"
+alias tag-ares="git-tag-ares.sh"
