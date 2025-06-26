@@ -1,0 +1,75 @@
+# espanso match file
+
+# For a complete introduction, visit the official docs at: https://espanso.org/docs/
+
+# You can use this file to define the base matches (aka snippets)
+# that will be available in every application when using espanso.
+
+# Matches are substitution rules: when you type the "trigger" string
+# it gets replaced by the "replace" string.
+matches:
+  # Simple text replacement
+  # - trigger: ":espanso"
+  #   replace: "Hi there!"
+
+  # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
+
+  # But matches can also be dynamic:
+
+  # Print the current date
+  # - trigger: ":date"
+  #   replace: "{{mydate}}"
+  #   vars:
+  #     - name: mydate
+  #       type: date
+  #       params:
+  #         format: "%m/%d/%Y"
+
+  # Print the output of a shell command
+  # - trigger: ":shell"
+  #   replace: "{{output}}"
+  #   vars:
+  #     - name: output
+  #       type: shell
+  #       params:
+  #         cmd: "echo 'Hello from your shell'"
+
+  # And much more! For more information, visit the docs: https://espanso.org/docs/
+
+  # Dev shortcuts
+  - trigger: ".gcm"
+    replace: "git commit -m \"{{ticket}} $|$\""
+    vars:
+      - name: ticket
+        type: shell
+        params:
+          cmd: "~/dev/extract_ticket.sh ~/dev/projects/cbstrials/"
+
+  - trigger: ".gca"
+    replace: "git commit --amend --no-edit"
+
+  - trigger: ".pry"
+    replace: "binding.pry"
+
+  # AI prompt contexts
+  - trigger: ":context"
+    label: "Epic definition"
+    replace: |
+      CONTEXT: "In the template (TEMPLATE) below, please interpret the text below each section as an explanation of what should go into that section.
+                The Milestones section should be just bullet points with key milestones to show progress."
+      TEMPLATE: "**Product Vision**
+                 Reiteration of the Product Vision, what the product in a mature state would look like
+                 **Product Goal**
+                 The long-term goal this Epic supports
+                 **Desired Outcome**
+                 The outcome you are trying to achieve
+                 **Value**
+                 Why this outcome matters from the point of view of the users and/or business
+                 **Milestones**
+                 High-level milestones necessary to achieve the value above
+                 **Metrics**
+                 The metrics to determine if the desired outcome above has been achieved"
+      Using the context (CONTEXT) above please write a Software Engineering Epic ticket description about $|$
+
+  - trigger: ":context"
+    replace: "placeholder"
