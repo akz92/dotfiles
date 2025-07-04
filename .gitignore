@@ -2,3 +2,4 @@ vim/undo/*
 vim/session/*
 ulauncher/.local/share/ulauncher/extensions/com.github.akz92.work/data.py
 ulauncher/.config/ulauncher/shortcuts.json
+ulauncher/.local/share/ulauncher/*

@@ -108,6 +108,9 @@ export PATH=".:${HOME}/bin:${PATH}"
 export CBS_HOME="/home/lucas/dev/projects/cbstrials"
 alias cbs="cd \$CBS_HOME && ./cbs.sh"
 
-. "$HOME/.asdf/asdf.sh"
+# . "$HOME/.asdf/asdf.sh"
+
+export SSH_AUTH_SOCK=/home/lucas/.bitwarden-ssh-agent.sock
 
 ssh-add 2>/dev/null
+[[ -z \$DISPLAY && \$(tty) == /dev/tty1 ]] && exec Hyprland

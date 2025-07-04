@@ -7,12 +7,15 @@ wezterm.on("gui-startup", function(cmd)
 end)
 
 return {
+	-- Force Wayland backend
+	enable_wayland = true,
 	-- TERM setting
 	term = "xterm-256color",
 
 	-- Font settings
-	font = wezterm.font("Monaco Nerd Font"),
+	font = wezterm.font("JetBrains Mono Nerd Font"),
 	font_size = 12.0,
+	harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
 
 	-- Padding (Kitty uses pixels, WezTerm uses cells)
 	window_padding = {
@@ -23,14 +26,15 @@ return {
 	},
 
 	-- Key mappings
-	-- keys = {
-	-- { key = "q", mods = "CMD", action = wezterm.action.QuitApplication },
-	-- { key = "v", mods = "SUPER", action = wezterm.action.PasteFrom("Clipboard") },
-	-- { key = "c", mods = "SUPER", action = wezterm.action.CopyTo("Clipboard") },
-	-- { key = "=", mods = "CTRL|SHIFT", action = wezterm.action.IncreaseFontSize },
-	-- { key = "-", mods = "CTRL|SHIFT", action = wezterm.action.DecreaseFontSize },
-	-- { key = "Backspace", mods = "CTRL|SHIFT", action = wezterm.action.ResetFontSize },
-	-- },
+	keys = {
+		-- { key = "q", mods = "CMD", action = wezterm.action.QuitApplication },
+		{ key = "v", mods = "CTRL", action = wezterm.action.PasteFrom("Clipboard") },
+		-- { key = "c", mods = "CTRL", action = wezterm.action.CopyTo("Clipboard") },
+		-- { key = "=", mods = "CTRL|SHIFT", action = wezterm.action.IncreaseFontSize },
+		--
+		-- { key = "-", mods = "CTRL|SHIFT", action = wezterm.action.DecreaseFontSize },
+		-- { key = "Backspace", mods = "CTRL|SHIFT", action = wezterm.action.ResetFontSize },
+	},
 
 	-- Cursor style
 	-- default_cursor_style = "BlinkingUnderline",
@@ -86,7 +90,7 @@ return {
 	},
 
 	-- Decorations
-	window_decorations = "RESIZE",
+	window_decorations = "NONE",
 	enable_tab_bar = false,
 
 	-- Use system wcwidth: not configurable in WezTerm; it's handled internally.

@@ -5,3 +5,5 @@
 email = lucas.moulin@creyos.com
 [core]
 	excludesFile = ~/.gitignore
+[pull]
+	rebase = true
